@@ -324,6 +324,10 @@ ul.pagination {
 	margin:1.063em 0 1.25em
 }
 /* Horizontal Nav ---------------------- */
+#menu .section-container.horizontal-nav .section,
+#mobile-menu .section-container.accordion .section {
+	position: relative;
+}
 #menu .section-container.horizontal-nav .section .title.has-dropdown > a:after,
 #mobile-menu .section-container.accordion .section .title.has-dropdown > a:after {
 	content: "";
