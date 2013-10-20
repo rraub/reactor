@@ -493,10 +493,8 @@ class Reactor_Add_Meta_Box {
 					break;
 					// slider
 					case 'slider' :
-					$meta_array = get_post_meta( get_the_ID(), $this->id, true );
-					$value = ( !empty( $meta_array ) ) ? $meta_array[$field['id']] : '0';
-					if ( $value == '' )
-						$value = $field['min'];
+					$meta_value = get_post_meta( get_the_ID(), $field['id'], true );                                            
+					$value = ( !empty( $meta_value ) ) ? $meta_value : $field['min'];
 					echo '
 							$( "#' . $field['id'] . '-slider" ).slider({
 								value: ' . $value . ',
