@@ -60,7 +60,7 @@ jQuery(function($) {
 	});
 	
 	// the remove image link, removes the image id from the hidden field and replaces the image preview
-	$('.meta_box_clear_image_button').click(function() {
+	$('.meta_box_clear_image_button').live('click', function() {
 		var defaultImage = $(this).parent().siblings('.meta_box_default_image').text();
 		$(this).parent().siblings('.meta_box_upload_image').val('');
 		$(this).parent().siblings('.meta_box_preview_image').attr('src', defaultImage);
