@@ -136,11 +136,11 @@ function reactor_add_columns( $atts, $content = null ) {
 	}
 	
 	$output  = '';
-	$output .= ( $first_last == 'first' ) ? '<div class="row">' : '';
+	$output .= ( $first_last == 'first' || $first_last == 'both') ? '<div class="row">' : '';
 	$output .= '<div class="' . $large . $small . ' columns">';
 	$output .= do_shortcode( $content );
 	$output .= '</div>';
-	$output .= ( $first_last == 'last' ) ? '</div>' : '';
+	$output .= ( $first_last == 'last' || $first_last == 'both' ) ? '</div>' : '';
 		
 	return $output;
 }
