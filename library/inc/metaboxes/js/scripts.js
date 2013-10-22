@@ -11,7 +11,7 @@ jQuery(function($) {
 	
 	// the upload image button, saves the id and outputs a preview of the image
 	var imageFrame;
-	$('.meta_box_upload_image_button').click(function(event) {
+	$('.meta_box_upload_image_button').live( 'click', function(event) {
 		event.preventDefault();
 		
 		var options, attachment;
@@ -60,7 +60,7 @@ jQuery(function($) {
 	});
 	
 	// the remove image link, removes the image id from the hidden field and replaces the image preview
-	$('.meta_box_clear_image_button').click(function() {
+	$('.meta_box_clear_image_button').live('click', function() {
 		var defaultImage = $(this).parent().siblings('.meta_box_default_image').text();
 		$(this).parent().siblings('.meta_box_upload_image').val('');
 		$(this).parent().siblings('.meta_box_preview_image').attr('src', defaultImage);
@@ -69,7 +69,7 @@ jQuery(function($) {
 	
 	// the file image button, saves the id and outputs the file name
 	var fileFrame;
-	$('.meta_box_upload_file_button').click(function(e) {
+	$('.meta_box_upload_file_button').live('click', function(e) {
 		e.preventDefault();
 		
 		var options, attachment;
@@ -119,7 +119,7 @@ jQuery(function($) {
 	});
 	
 	// the remove image link, removes the image id from the hidden field and replaces the image preview
-	$('.meta_box_clear_file_button').click(function() {
+	$('.meta_box_clear_file_button').live('click', function() {
 		$(this).parent().siblings('.meta_box_upload_file').val('');
 		$(this).parent().siblings('.meta_box_filename').text('');
 		$(this).parent().siblings('.meta_box_file').removeClass('checked');
