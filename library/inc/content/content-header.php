@@ -104,9 +104,9 @@ function reactor_do_nav_bar() {
 	if ( reactor_option('mobile_menu', 1) ) { ?>       
 		<div id="mobile-menu-button" class="show-for-small">
 			<button class="secondary button" id="mobileMenuButton" href="#mobile-menu">
-				<div class="mobile-menu-icon"></div>
-				<div class="mobile-menu-icon"></div>
-				<div class="mobile-menu-icon"></div>
+				<span class="mobile-menu-icon"></span>
+				<span class="mobile-menu-icon"></span>
+				<span class="mobile-menu-icon"></span>
 			</button>
 		</div><!-- #mobile-menu-button -->             
 	<?php }
