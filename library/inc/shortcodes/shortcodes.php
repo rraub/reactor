@@ -298,7 +298,7 @@ function reactor_add_glyph_icons( $atts, $content = null ) {
 	
 	$class_array = array();
 	$class_array[] = ( $type ) ? $type : '';
-	$class_array[] = ( $icon ) ? 'foundicon-' . $icon : '';
+	$class_array[] = ( $icon ) ? 'fi-' . $icon : '';
 	$class_array[] = ( $class ) ? $class : '';
 	$class_array = array_filter( $class_array );
 	$classes = implode( ' ', $class_array );
