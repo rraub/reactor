@@ -10,22 +10,31 @@
  * @license GNU General Public License v2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
  */
 
-function reactor_columns( $columns = '', $echo = true, $sidebar = false, $sidebar_id = null ) {
+function reactor_columns( $columns = '', $echo = true, $sidebar = false, $sidebar_id = null, $push_pull = 0 ) {
+
+	// add push/pull columns
+	$pushpull = '';
+	if ( $push_pull > 0 ) {
+		$pushpull = ' push-' . intval( $push_pull );
+	} elseif ( $push_pull < 0 ) {
+		$pushpull = ' pull-' . intval( abs( $push_pull ) );
+	}
 
 	// if array of 2 numbers is passed to the function
 	if ( $columns && is_array( $columns ) ) {
-		echo 'large-' . intval( $columns[0] ) . ' small-' . intval( $columns[1] ) . ' columns';
+		echo 'large-' . intval( $columns[0] ) . ' small-' . intval( $columns[1] ) . $pushpull . ' columns';
 		return;
 	}
 	// if just a number is passed to the function
 	elseif ( $columns ) {
-		echo 'large-' . intval( $columns ) . ' small-12 columns';
+		echo 'large-' . intval( $columns ) . ' small-12' . $pushpull . ' columns';
 		return;
 	}
 
+	
 	// get the template layout from meta
 	$default = reactor_option('page_layout', '2c-l');
-	$layout =  reactor_option('', $default, '_template_layout');
+	$layout = reactor_option('', $default, '_template_layout');
 	
 	if ( is_page_template('page-templates/side-menu.php') ) {
 		$layout = 'side-menu';
