@@ -75,6 +75,15 @@ function reactor_theme_setup() {
 		array('aside', 'gallery','link', 'image', 'quote', 'status', 'video', 'audio', 'chat')
 	);
 	
+   /**
+    * 3rd Party Supprt
+    */
+	
+	// WooCommerce
+    // Necessary hooks are removed in the Reactor construct and added in
+    // library/inc/content/content-pages.php
+	add_theme_support( 'woocommerce' );
+	
 	add_theme_support('post-thumbnails');
 	// thumbnail sizes - you can add more
 	add_image_size('thumb-300', 300, 250, true);
