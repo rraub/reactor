@@ -136,11 +136,11 @@ function reactor_add_columns( $atts, $content = null ) {
 	}
 	
 	$output  = '';
-	$output .= ( $first_last == 'first' ) ? '<div class="row">' : '';
+	$output .= ( $first_last == 'first' || $first_last == 'both') ? '<div class="row">' : '';
 	$output .= '<div class="' . $large . $small . ' columns">';
 	$output .= do_shortcode( $content );
 	$output .= '</div>';
-	$output .= ( $first_last == 'last' ) ? '</div>' : '';
+	$output .= ( $first_last == 'last' || $first_last == 'both' ) ? '</div>' : '';
 		
 	return $output;
 }
@@ -298,7 +298,7 @@ function reactor_add_glyph_icons( $atts, $content = null ) {
 	
 	$class_array = array();
 	$class_array[] = ( $type ) ? $type : '';
-	$class_array[] = ( $icon ) ? 'foundicon-' . $icon : '';
+	$class_array[] = ( $icon ) ? 'fi-' . $icon : '';
 	$class_array[] = ( $class ) ? $class : '';
 	$class_array = array_filter( $class_array );
 	$classes = implode( ' ', $class_array );

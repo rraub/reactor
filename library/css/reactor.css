@@ -115,6 +115,7 @@ textarea {
 	background:#777;
 	border-radius:0.063em;
 	box-shadow:0 0.063em 0 rgba(0, 0, 0, 0.25);
+	display:block;
 	height:0.125em;
 	width:1.25em
 }
