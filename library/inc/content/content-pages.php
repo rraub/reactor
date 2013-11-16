@@ -77,4 +77,32 @@ function reactor_do_page_links() {
 	}
 }
 add_action('reactor_loop_after', 'reactor_do_page_links', 1);
+
+/**
+ * WooCommerce Wrappers
+ * before and after the loop in WooCommerce templates
+ * 
+ * @since 1.0.1
+ * @see http://docs.woothemes.com/document/third-party-custom-theme-compatibility/
+ * 
+ */
+
+function reactor_woo_wrapper_start() { ?>
+    <div class="row">
+        <div class="<?php reactor_columns()?>">
+<?php }
+
+add_action('woocommerce_before_main_content', 'reactor_woo_wrapper_start', 10);
+
+function reactor_woo_wrapper_end() { ?> 
+        </div><!-- .columns -->
+<?php }
+
+add_action('woocommerce_after_main_content', 'reactor_woo_wrapper_end', 10);
+
+function reactor_woo_after_sidebar() { ?> 
+    </div><!-- .row -->
+<?php }
+
+add_action('woocommerce_sidebar', 'reactor_woo_after_sidebar', 999);
 ?>
