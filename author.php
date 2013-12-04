@@ -10,24 +10,20 @@
 
 <?php get_header(); ?>
 
-	<div id="primary" class="site-content">
-    
-    	<?php reactor_content_before(); ?>
-    
-        <div id="content" role="main">
+	<div id="primary" class="content-area">
+
+        <main id="main" class="site-main" role="main">
         	<div class="row">
                 <div class="<?php reactor_columns(); ?>">
-                
-                <?php reactor_inner_content_before(); ?>
-                
+
 				<?php if ( have_posts() ) : the_post(); ?>
-        
+
                     <header class="archive-header">
                         <h1 class="archive-title"><?php printf( __('Author: %s', 'reactor'), get_the_author() ); ?></h1>
                     </header><!-- .archive-header -->
-        
+
                     <?php rewind_posts(); ?>
-        
+
                     <?php // If a user has filled out their description, show a bio on their entries.
                     if ( get_the_author_meta('description') ) : ?>
                     <div class="author-info">
@@ -41,22 +37,18 @@
                     </div><!-- .author-info -->
                     <?php endif; ?>
 
-                <?php endif; // end have_posts() check ?> 
-                
+                <?php endif; // end have_posts() check ?>
+
 				<?php // get the loop
 				get_template_part('loops/loop', 'index'); ?>
-                
-                <?php reactor_inner_content_after(); ?>
-                
+
                 </div><!-- .columns -->
-                
+
                 <?php get_sidebar(); ?>
-                
+
             </div><!-- .row -->
-        </div><!-- #content -->
-        
-        <?php reactor_content_after(); ?>
-        
+        </main><!-- #main -->
+
 	</div><!-- #primary -->
 
 <?php get_footer(); ?>

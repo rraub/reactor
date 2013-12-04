@@ -61,21 +61,17 @@ if ( isset( $_POST['submitted'] ) ) {
 
 <?php get_header(); ?>
 
-	<div id="primary" class="site-content">
-    
-    	<?php reactor_content_before(); ?>
-    
-        <div id="content" role="main">
+	<div id="primary" class="content-area">
+
+        <main id="main" class="site-main" role="main">
         	<div class="row">
                 <div class="<?php reactor_columns(); ?>">
-                
-                <?php reactor_inner_content_before(); ?>
-                
+
 					<?php // get the page loop
                     get_template_part('loops/loop', 'page'); ?>
-									
-					<?php // begin contact form ?> 
-                        
+
+					<?php // begin contact form ?>
+
         			<div class="row">
                       <div id="contact-form" class="<?php reactor_columns( 12 ) ?> entry-content">
                         <?php if ( isset( $emailSent ) && $emailSent == true ) { ?>
@@ -93,7 +89,7 @@ if ( isset( $_POST['submitted'] ) ) {
                               <span class="error"><?php echo $nameError;?></span>
                               <?php endif; ?>
                             </div>
-                            
+
                             <div class="<?php reactor_columns( 7 ) ?>">
                               <label class="<?php echo $errorClass;?>" for="email">Email</label>
                               <input type="text" name="email" id="email" value="<?php if ( isset( $_POST['email'] ) )  echo $_POST['email'];?>" class="required email <?php echo $errorClass;?>" />
@@ -101,7 +97,7 @@ if ( isset( $_POST['submitted'] ) ) {
                               <span class="error"><?php echo $emailError;?></span>
                               <?php endif; ?>
                             </div>
-                            
+
                             <div class="<?php reactor_columns( 10 ) ?>">
                               <label class="<?php echo $errorClass;?>" for="commentsText">Message:</label>
                               <textarea name="comments" id="commentsText" rows="12" cols="80" class="required <?php echo $errorClass;?>"><?php if ( isset( $_POST['comments'] ) ) { if ( function_exists('stripslashes') ) { echo stripslashes( $_POST['comments'] ); } else { echo $_POST['comments']; } } ?></textarea>
@@ -115,20 +111,16 @@ if ( isset( $_POST['submitted'] ) ) {
                           </div>
                           <input type="hidden" name="submitted" id="submitted" value="true" />
                         </form>
-                      </div><!-- #contact-form .columns --> 
+                      </div><!-- #contact-form .columns -->
                 	</div><!-- .row -->
-                      
-                   <?php reactor_inner_content_after(); ?>
-                
+
                 </div><!-- .columns -->
-                
+
                 <?php get_sidebar(); ?>
-                
+
             </div><!-- .row -->
-        </div><!-- #content -->
-        
-        <?php reactor_content_after(); ?>
-        
+        </main><!-- #main -->
+
 	</div><!-- #primary -->
 
 <?php get_footer(); ?>

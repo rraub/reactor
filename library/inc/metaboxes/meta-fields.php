@@ -9,10 +9,10 @@
 
 
 	$prefix = '_sample_';
-	
+
 	$layouts = get_theme_support( 'reactor-layouts' );
 	$theme_layouts = array();
-		
+
 	if ( !is_array( $layouts[0] ) ) {
 		$layouts[0] = array();
 	}
@@ -27,7 +27,7 @@
  * Variables above this line
  * --------------------------------------------
  */
- 
+
 		/**
 		 * Field arrays for custom meta boxes
 		 * Remember to use an underscore before the id
@@ -65,7 +65,7 @@
 				'id'	=> $prefix.'select', // field id and name
 				'type'	=> 'select', // type of field
 				'options' => array ( // array of options
-					'one'   => 'Option One', 
+					'one'   => 'Option One',
 					'two'   => 'Option Two',
 					'three' => 'Option Three',
 					)
@@ -76,7 +76,7 @@
 				'id'	=> $prefix.'radio', // field id and name
 				'type'	=> 'radio', // type of field
 				'options' => array ( // array of options
-					'one'   => 'Option One', 
+					'one'   => 'Option One',
 					'two'   => 'Option Two',
 					'three' => 'Option Three',
 					)
@@ -87,7 +87,7 @@
 				'id'	=> $prefix.'checkbox_group', // field id and name
 				'type'	=> 'checkbox_group', // type of field
 				'options' => array ( // array of options
-					'one'   => 'Option One', 
+					'one'   => 'Option One',
 					'two'   => 'Option Two',
 					'three' => 'Option Three',
 					)
@@ -159,18 +159,30 @@
 						'type' => 'textarea'
 					)
 				)
-			) 
+			)
 		 );
-*/		 
+*/
 		$slide_fields = array(
+			array(
+				'label'	=> 'Title',
+				'desc'	=> 'Show the title in the caption',
+				'id'	=> '_slide_title',
+				'type'	=> 'checkbox',
+			),
 		 	array(
 				'label'	=> __('URL', 'reactor'),
-				'desc'	=> __('A URL for the slide title to direct to (ex. http://awtheme.com)', 'reactor'),
+				'desc'	=> __('A URL for the title to direct to (ex. http://awtheme.com)', 'reactor'),
 				'id'	=> '_slide_url',
-				'type'	=> 'url'
+				'type'	=> 'url',
+			),
+			array(
+				'label'	=> 'Background',
+				'desc'	=> 'Use featured image as background',
+				'id'	=> '_slide_bg',
+				'type'	=> 'checkbox',
 			),
 		);
-		
+
 		$layout_fields = array(
 		 	array(
 				'label'	=> __('Select a template layout', 'reactor'),
@@ -182,7 +194,7 @@
 			),
 		);
 
-		
+
 /**
  * Instantiate the class to create a meta box
  *
@@ -196,6 +208,6 @@
  * var $fields array meta box fields
  */
 //$sample_box = new Custom_Add_Meta_Box( '_sample_box', 'Sample Box', 'post', 'normal', 'high', $sample_fields );
-$slide_meta = new Reactor_Add_Meta_Box( 'slide_meta', __('Slide Link', 'reactor'), 'slide', 'normal', 'high', $slide_fields );
+$slide_meta = new Reactor_Add_Meta_Box( 'slide_settings', __('Slide Settings', 'reactor'), 'slide', 'normal', 'high', $slide_fields );
 $layout_meta = new Reactor_Add_Meta_Box( 'layout_meta', __('Layout', 'reactor'), array('post', 'page', 'portfolio'), 'side', 'default', $layout_fields );
 

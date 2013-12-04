@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Clean Up WordPress Output
  *
@@ -37,24 +37,24 @@
 
 /**
  * The default wordpress head is
- * a mess. Let's clean it up by 
+ * a mess. Let's clean it up by
  * removing all the junk we don't
  * need. -Bones
  */
-add_action('after_setup_theme', 'reactor_wp_helpers', 15); 
- 
+add_action('after_setup_theme', 'reactor_wp_helpers', 15);
+
 if ( !function_exists('reactor_wp_helpers') ) {
 	function reactor_wp_helpers() {
-		
+
 		// launching operation cleanup
 		add_action('init', 'reactor_head_cleanup');
-		
+
 		// remove WP version from RSS
 		add_filter('the_generator', 'reactor_rss_version');
-		
+
 		// creates a nicely formatted title in the header
 		add_filter('wp_title', 'reactor_wp_title', 10, 2);
-		
+
 		// remove injected css for recent comments widget
 		add_filter('wp_head', 'reactor_remove_wp_widget_recent_comments_style', 1);
 		// clean up comment styles in the head
@@ -62,15 +62,15 @@ if ( !function_exists('reactor_wp_helpers') ) {
 		// fixes CSS output for front end admin bar
 		add_action('wp_head', 'reactor_admin_bar_fix', 5);
 		add_action('get_header', 'reactor_remove_admin_bar_css');
-		
+
 		// adds class to body
-		add_filter('body_class', 'reactor_topbar_body_class');
-		
+		add_filter('body_class', 'reactor_add_body_classes');
+
 		// change sticky class
 		add_filter('post_class','reactor_change_sticky_class');
 		// adds class to single posts
 		add_filter('post_class', 'reactor_single_post_class');
-		
+
 		// cleaning up code around images
 		add_filter('the_content', 'reactor_img_unautop', 30);
 		// add permalink to aside posts
@@ -79,29 +79,29 @@ if ( !function_exists('reactor_wp_helpers') ) {
 		add_filter('the_content', 'reactor_add_blockquote_to_quotes');
 		// add blockquote tag to quote posts
 		add_filter('the_content', 'reactor_add_flexvideo_to_videos');
-		
+
 		// changes excerpt more link
 		add_filter('excerpt_more', 'reactor_excerpt_more');
 		// custom excerpt length
 		add_filter('excerpt_length', 'reactor_excerpt_length', 999);
 		// changes content more link
-		add_filter('the_content_more_link', 'reactor_content_more', 10, 2); 
-		
+		add_filter('the_content_more_link', 'reactor_content_more', 10, 2);
+
 		// add html5 captions
 		add_filter('img_caption_shortcode', 'reactor_cleaner_caption', 10, 3);
-		
+
 		// clean up gallery output in wp
 		add_filter('gallery_style', 'reactor_gallery_style');
-				
+
 		// add comment reply class
 		add_filter('comment_reply_link', 'reactor_comment_reply_class');
-		
+
 		// do shortcodes in widgets
 		add_filter('widget_text', 'do_shortcode');
-		
+
 		// exclude front page posts
 		add_action( 'pre_get_posts', 'exclude_category' );
-		
+
 	}
 }
 
@@ -115,10 +115,10 @@ function reactor_head_cleanup() {
 	// remove_action('wp_head', 'feed_links_extra', 3 );
 	// post and comment feeds
 	// remove_action('wp_head', 'feed_links', 2 );
-	
+
 	// EditURI link
 	remove_action('wp_head', 'rsd_link');
-	// windows live writer 
+	// windows live writer
 	remove_action('wp_head', 'wlwmanifest_link');
 	// index link
 	remove_action('wp_head', 'index_rel_link');
@@ -154,7 +154,7 @@ function reactor_remove_wp_ver_css_js( $src ) {
 	return $src;
 }
 
-/** 
+/**
  * 4. Remove injected CSS for recent comments widget
  *
  * @since 1.0.0
@@ -231,7 +231,7 @@ function reactor_cleaner_caption( $output, $attr, $content ) {
 	if ( is_feed() ) {
 		return $output;
 	}
-	$defaults = array( 
+	$defaults = array(
 		'id'      => '',
 		'align'   => 'alignnone',
 		'width'   => '',
@@ -276,10 +276,10 @@ function reactor_wp_title( $title, $sep ) {
 	return $title;
 }
 
-/** 
+/**
  * 12. Add the permalink to the end of an aside posts
  *
- * @author Justin Tadlock 
+ * @author Justin Tadlock
  * @link http://justintadlock.com/archives/2012/09/06/post-formats-aside
  * @since 1.0.0
  */
@@ -354,10 +354,6 @@ function reactor_single_post_class( $classes ) {
 	if ( is_single() ) {
 		$classes[] = 'single';
 	}
-	if ( is_single() && 'portfolio' == get_post_type()) {
-		$classes[]  = 'single';
-		$classes[] .= 'single-portfolio';
-	}
 	return $classes;
 }
 
@@ -366,7 +362,7 @@ function reactor_single_post_class( $classes ) {
  *
  * @since 1.0.0
  */
-function reactor_topbar_body_class( $classes ) {
+function reactor_add_body_classes( $classes ) {
 	if ( has_nav_menu('top-bar-l') || has_nav_menu('top-bar-r') ) {
 		$classes[] = 'has-top-bar';
 	}
@@ -375,9 +371,6 @@ function reactor_topbar_body_class( $classes ) {
 	}
 	if ( is_page_template('page-templates/news-page.php') ) {
 		$classes[] = 'news-page';
-	}
-	if ( is_page_template('page-templates/portfolio.php') ) {
-		$classes[] = 'portfolio';
 	}
 	if ( is_page_template('page-templates/contact.php') ) {
 		$classes[] = 'contact-page';
@@ -422,7 +415,7 @@ function reactor_change_sticky_class( $classes ) {
  * add the button class to the reply link in comments
  *
  * @since 1.0.0
- */  
+ */
 function reactor_comment_reply_class( $link ) {
 	return str_replace("class='comment-reply-link'", "class='comment-reply-link button small'", $link);
 }
@@ -433,7 +426,7 @@ function reactor_comment_reply_class( $link ) {
  * then remove them from the main query
  *
  * @since 1.0.0
- */ 
+ */
 function exclude_category( $query ) {
 	$exclude = ( reactor_option('frontpage_exclude_cat', 1) ) ? -reactor_option('frontpage_post_category', '') : '';
     if ( $query->is_home() && $query->is_main_query() ) {

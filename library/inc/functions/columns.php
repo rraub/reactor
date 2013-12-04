@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Reactor Columns
  * a function to set grid columns based on selected layout
@@ -31,44 +31,38 @@ function reactor_columns( $columns = '', $echo = true, $sidebar = false, $sideba
 		return;
 	}
 
-	
+
 	// get the template layout from meta
 	$default = reactor_option('page_layout', '2c-l');
 	$layout = reactor_option('', $default, '_template_layout');
-	
+
 	if ( is_page_template('page-templates/side-menu.php') ) {
 		$layout = 'side-menu';
 	}
-	
+
 	// check if tumblog icons are used in blog
 	$tumblog = reactor_option('tumblog_icons', false);
-		
+
 	// else check if columns are for a sidebar
 	if ( true == $sidebar ) {
 
 		// sidebar columns based on layout
 		switch ( $layout ) {
-			case '1c': 
+			case '1c':
 				$classes[] = '';
 				break;
 			case '3c-l':
 			case '3c-r':
 			case '3c-c':
-				$classes[] = 'large-3';
-				break;
 			case 'side-menu':
-				if ( 'accordion' == reactor_option('side_nav_type', 'accordion') ) {
-					$classes[] = 'large-3';
-				} elseif ( 'side_nav' == reactor_option('side_nav_type', 'accordion') ) {
-					$classes[] = 'large-2';
-				}
+				$classes[] = 'large-3';
 				break;
 			default:
 				// 4 is the default number of columns for 1 sidebar
 				$classes[] = 'large-4';
 				break;
 		}
-			
+
 		// pull the content above left sidebar on small screens
 		if ( '3c-r' == $layout ) {
 			$classes[] = 'pull-6';
@@ -83,7 +77,7 @@ function reactor_columns( $columns = '', $echo = true, $sidebar = false, $sideba
 	// else apply columns based on template layout or meta
 	} else {
 
-		// number of columns for main content based on layout		
+		// number of columns for main content based on layout
 		switch ( $layout ) {
 			case '1c':
 				// subtract 1 and offset by 1 if using tumblog icons
@@ -106,11 +100,7 @@ function reactor_columns( $columns = '', $echo = true, $sidebar = false, $sideba
 				}
 				break;
 			case 'side-menu':
-				if ( 'accordion' == reactor_option('side_nav_type', 'accordion') ) {
-					$classes[] = 'large-9';
-				} elseif ( 'side_nav' == reactor_option('side_nav_type', 'accordion') ) {
-					$classes[] = 'large-10';
-				}
+				$classes[] = 'large-9';
 				break;
 			default:
 				/* 8 is the default number of columns for a page with 1 sidebar
@@ -123,8 +113,8 @@ function reactor_columns( $columns = '', $echo = true, $sidebar = false, $sideba
 				}
 				break;
 		}
-			
-		// push columns for left sidebars	
+
+		// push columns for left sidebars
 		switch ( $layout ) {
 			case '3c-r':
 				$classes[] = 'push-6';
@@ -137,16 +127,16 @@ function reactor_columns( $columns = '', $echo = true, $sidebar = false, $sideba
 				break;
 		}
 	}
-	
+
 	//always add the columns class
 	$classes[] = 'columns';
-	
+
 	// remove empty values
 	$classes = array_filter( $classes );
-		
+
 	// add spaces
 	$columns = implode( ' ', array_map( 'esc_attr', $classes ) );
-	
+
 	// echo classes unless echo false
 	if ( false == $echo ) {
 		return apply_filters('reactor_content_cols', $columns);

@@ -1,8 +1,8 @@
-<?php 
+<?php
 /**
  * Top Bar Function
  * output code for the Foundation top bar structure
- * 
+ *
  * @package Reactor
  * @author Anthony Wilhelm (@awshout / anthonywilhelm.com)
  * @since 1.0.0
@@ -24,11 +24,11 @@ if ( !function_exists('reactor_top_bar') ) {
 		);
 		$args = wp_parse_args( $args, $defaults );
 		$args = apply_filters( 'reactor_top_bar_args', $args );
-		
+
 		/* call functions to create right and left menus in the top bar. defaults to the registered menus for top bar */
         $left_menu = ( ( $args['left_menu'] && is_callable( $args['left_menu'] ) ) ) ? call_user_func( $args['left_menu'], (array) $args ) : '';
         $right_menu = ( ( $args['right_menu'] && is_callable( $args['right_menu'] ) ) ) ? call_user_func( $args['right_menu'], (array) $args ) : '';
-		
+
 		// assemble classes for top bar
 		$classes = array(); $output = '';
 		$classes[] = ( $args['fixed'] ) ? 'fixed' : '';
@@ -36,11 +36,11 @@ if ( !function_exists('reactor_top_bar') ) {
 		$classes[] = ( $args['sticky'] ) ? 'sticky' : '';
 		$classes = array_filter( $classes );
 		$classes = implode( ' ', array_map( 'esc_attr', $classes ) );
-		
+
 		// start top bar output
 		if ( has_nav_menu('top-bar-l') || has_nav_menu('top-bar-r') ) {
 			$output .= '<div class="top-bar-container ' . $classes . '">';
-				$output .= '<nav class="top-bar">';
+				$output .= '<nav id="site-navigation" class="top-bar main-navigation" role="navigation" data-topbar>';
 					$output .= '<ul class="title-area">';
 						$output .= '<li class="name">';
 							$output .= '<p><a href="' . $args['title_url'].'">' . $args['title'] . '</a></p>';
@@ -53,8 +53,8 @@ if ( !function_exists('reactor_top_bar') ) {
 					$output .= '</section>';
 				$output .= '</nav>';
 			$output .= '</div>';
-			
-		echo apply_filters('reactor_top_bar', $output, $args);	
+
+		echo apply_filters('reactor_top_bar', $output, $args);
 	    }
 	}
 }
@@ -68,13 +68,13 @@ if ( !function_exists('reactor_top_bar') ) {
  */
 if(!function_exists('reactor_topbar_search')) {
 	function reactor_topbar_search( $args = '' ) {
-	
+
 		$defaults = array(
 			'side' => 'right',
 		 );
 		$args = wp_parse_args( $args, $defaults );
 		$args = apply_filters( 'reactor_top_bar_args', $args );
-		
+
 		$output  = '<ul class="' . $args['side'] . '"><li class="has-form">';
 		$output .= '<form role="search" method="get" id="searchform" action="' . home_url() . '"><div class="row collapse">';
 		$output .= '<div class="large-8 small-8 columns">';
@@ -83,9 +83,9 @@ if(!function_exists('reactor_topbar_search')) {
 		$output .= '<div class="large-4 small-4 end columns">';
 		$output .= '<input class="button prefix" type="submit" id="searchsubmit" value="' . esc_attr__('Search', 'reactor') . '" />';
 		$output .= '</div>';
-		$output .= '</div></form>';	
+		$output .= '</div></form>';
 		$output .= '</li></ul>';
-		
+
 		return apply_filters('reactor_search_form', $output);
 	}
 }

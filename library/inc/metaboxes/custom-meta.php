@@ -7,7 +7,7 @@
  * @author Anthony Wilhelm (@awshout / anthonywilhelm.com)
  * @license GNU General Public License v2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
  */
- 
+
 /**
  * metaboxes directory constant
  */
@@ -45,7 +45,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 	$repeatable_fields = isset( $field['repeatable_fields'] ) ? $field['repeatable_fields'] : null;
 
 	$meta = (  $meta ) ? $meta : $std;
-	
+
 	// the id and name for each field
 	$id = $name = isset( $field['id'] ) ? $field['id'] : null;
 	if ( $repeatable ) {
@@ -83,7 +83,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 							echo '<input type="hidden" name="' . esc_attr( $name ) . '" value="" />';
 							echo '<input type="checkbox" name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" ' . checked( $meta, true, false ) . ' value="1" />
 									<label for="' . esc_attr( $id ) . '">' . $desc . ' </label>';
-						break;	
+						break;
 						// select
 						case 'select':
 							echo '<select name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '"' , isset( $multiple ) && $multiple == true ? ' multiple="multiple"' : '' , '>
@@ -104,7 +104,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 						case 'checkbox_group':
 							echo '<ul class="meta_box_items"><input type="hidden" name="' . esc_attr( $name ) . '[]" value="" />';
 							foreach ( $options as $value => $label )
-								echo '<li><input type="checkbox" value="' . $value . '" name="' . esc_attr( $id ) . '[]" id="' . esc_attr( $id ) . '-' . $value . '"' , is_array( $meta ) && in_array( $value, $meta ) ? ' checked="checked"' : '' , ' /> 
+								echo '<li><input type="checkbox" value="' . $value . '" name="' . esc_attr( $id ) . '[]" id="' . esc_attr( $id ) . '-' . $value . '"' , is_array( $meta ) && in_array( $value, $meta ) ? ' checked="checked"' : '' , ' />
 										<label for="' . esc_attr( $id ) . '-' . $value . '">' . $label . '</label></li>';
 							echo '</ul>' . $desc;
 						break;
@@ -131,7 +131,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 						case 'post_checkboxes':
 							$posts = get_posts( array( 'post_type' => $post_type, 'posts_per_page' => -1 ) );
 							echo '<ul class="meta_box_items">';
-							foreach ( $posts as $item ) 
+							foreach ( $posts as $item )
 								echo '<li><input type="checkbox" value="' . $item->ID . '" name="' . esc_attr( $name ) . '[]" id="' . esc_attr( $id ) . '-' . $item->ID . '"' , is_array( $meta ) && in_array( $item->ID, $meta ) ? ' checked="checked"' : '' , ' />
 										<label for="' . esc_attr( $id ) . '-' . $item->ID . '">' . $item->post_title . '</label></li>';
 							$post_type_object = get_post_type_object( $post_type );
@@ -148,13 +148,13 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 										if ( is_array( $meta ) ) {
 											$items = explode( ',', $meta[$area['id']] );
 											foreach ( $items as $item ) {
-												$output = $display == 'thumbnail' ? get_the_post_thumbnail( $item, array( 204, 30 ) ) : get_the_title( $item ); 
+												$output = $display == 'thumbnail' ? get_the_post_thumbnail( $item, array( 204, 30 ) ) : get_the_title( $item );
 												echo '<li id="' . $item . '">' . $output . '</li>';
 											}
 										}
 								echo '</ul>
-									<input type="hidden" name="' . esc_attr( $name ) . '[' . $area['id'] . ']" 
-									class="store-area-' . $area['id'] . '" 
+									<input type="hidden" name="' . esc_attr( $name ) . '[' . $area['id'] . ']"
+									class="store-area-' . $area['id'] . '"
 									value="' , $meta ? $meta[$area['id']] : '' , '" />';
 							}
 							echo '</div>';
@@ -168,7 +168,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 							echo '<ul class="post_drop_sort_source sort_list">
 									<li class="post_drop_sort_area_name">' . __('Available ', 'reactor') . $label . '</li>';
 							foreach ( $posts as $item ) {
-								$output = $display == 'thumbnail' ? get_the_post_thumbnail( $item->ID, array( 204, 30 ) ) : get_the_title( $item->ID ); 
+								$output = $display == 'thumbnail' ? get_the_post_thumbnail( $item->ID, array( 204, 30 ) ) : get_the_title( $item->ID );
 								echo '<li id="' . $item->ID . '">' . $output . '</li>';
 							}
 							echo '</ul>';
@@ -180,7 +180,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 							$terms = get_terms( $taxonomy, 'get=all' );
 							$selected = ( isset( $meta ) ) ? $meta : '';
 							foreach ( $terms as $term ) {
-								echo '<option value="' . $term->slug . '"' . selected( $selected, $term->slug, false ) . '>' . $term->name . '</option>'; 
+								echo '<option value="' . $term->slug . '"' . selected( $selected, $term->slug, false ) . '>' . $term->name . '</option>';
 							}
 							$tax = get_taxonomy( $taxonomy );
 							echo '</select> &nbsp;<span class="description"><a href="'.get_bloginfo( 'url' ) . '/wp-admin/edit-tags.php?taxonomy=' . $taxonomy . '">Manage ' . $tax->label . '</a></span>
@@ -209,12 +209,12 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 						break;
 						// image
 						case 'image':
-							$image = get_template_directory_uri() . '/library/includes/metaboxes/images/image.png';	
+							$image = get_template_directory_uri() . '/library/includes/metaboxes/images/image.png';
 							echo '<div class="meta_box_image"><span class="meta_box_default_image" style="display:none">' . $image . '</span>';
 							if ( $meta ) {
 								$image = wp_get_attachment_image_src( intval( $meta ), 'medium' );
 								$image = $image[0];
-							}				
+							}
 							echo	'<input name="' . esc_attr( $name ) . '" type="hidden" class="meta_box_upload_image" value="' . intval( $meta ) . '" />
 										<img src="' . esc_attr( $image ) . '" class="meta_box_preview_image" alt="" />
 											<a href="#" class="meta_box_upload_image_button button" rel="' . get_the_ID() . '">Choose Image</a>
@@ -222,7 +222,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 											<br clear="all" />' . $desc;
 						break;
 						// file
-						case 'file':		
+						case 'file':
 							$iconClass = 'meta_box_file';
 							if ( $meta ) $iconClass .= ' checked';
 							echo	'<div class="meta_box_file_stuff"><<input name="' . esc_attr( $name ) . '" type="hidden" class="meta_box_upload_file" value="' . esc_url( $meta ) . '" />
@@ -276,7 +276,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 								' . $desc;
 						break;
 					} //end switch
-		
+
 }
 
 /**
@@ -287,22 +287,24 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
  *
  * @return	bool				whether or not the type is in the provided array
  */
-function meta_box_find_field_type( $needle, $haystack ) {
-	foreach ( $haystack as $h )
-		if ( isset( $h['type'] ) && $h['type'] == 'repeatable' )
-			return meta_box_find_field_type( $needle, $h['repeatable_fields'] );
-		elseif ( ( isset( $h['type'] ) && $h['type'] == $needle ) || ( isset( $h['repeatable_type'] ) && $h['repeatable_type'] == $needle ) )
-			return true;
-	return false;
+function meta_box_find_field_type( $needle = null, $haystack = null ) {
+	if($haystack) {
+		foreach ( $haystack as $h )
+			if ( isset( $h['type'] ) && $h['type'] == 'repeatable' )
+				return meta_box_find_field_type( $needle, $h['repeatable_fields'] );
+			elseif ( ( isset( $h['type'] ) && $h['type'] == $needle ) || ( isset( $h['repeatable_type'] ) && $h['repeatable_type'] == $needle ) )
+				return true;
+		return false;
+	}
 }
 
 /**
  * Find repeatable
  *
- * This function does almost the same exact thing that the above function 
- * does, except we're exclusively looking for the repeatable field. The 
- * reason is that we need a way to look for other fields nested within a 
- * repeatable, but also need a way to stop at repeatable being true. 
+ * This function does almost the same exact thing that the above function
+ * does, except we're exclusively looking for the repeatable field. The
+ * reason is that we need a way to look for other fields nested within a
+ * repeatable, but also need a way to stop at repeatable being true.
  * Hopefully I'll find a better way to do this later.
  *
  * @param	string	$needle 	field type to look for
@@ -375,11 +377,11 @@ function meta_box_array_map_r( $func, $meta, $sanitizer ) {
 
 	$newMeta = array();
 	$meta = array_values( $meta );
-	
+
 	foreach( $meta as $key => $array ) {
 		if ( $array == '' )
 			continue;
-			
+
 		/**
 		 * some values are stored as array, we only want multidimensional ones
 		 */
@@ -387,9 +389,9 @@ function meta_box_array_map_r( $func, $meta, $sanitizer ) {
 			return array_map( $func, $meta, (array)$sanitizer );
 			break;
 		}
-		
+
 		/**
-		 * the sanitizer will have all of the fields, but the item may only 
+		 * the sanitizer will have all of the fields, but the item may only
 		 * have values for a few, remove the ones we don't have from the santizer
 		 */
 		$keys = array_keys( $array );
@@ -405,7 +407,7 @@ function meta_box_array_map_r( $func, $meta, $sanitizer ) {
 		foreach( $array as $arrayKey => $arrayValue )
 			if ( is_array( $arrayValue ) )
 				$array[$arrayKey] = meta_box_array_map_r( $func, $arrayValue, $newSanitizer[$arrayKey] );
-		
+
 		$array = array_map( $func, $array, $newSanitizer );
 		$newMeta[$key] = array_combine( $keys, array_values( $array ) );
 	}
@@ -421,14 +423,14 @@ function meta_box_array_map_r( $func, $meta, $sanitizer ) {
  * @param	string|array	$page		post type to add meta box to
  */
 class Reactor_Add_Meta_Box {
-	
+
 	var $id;
 	var $title;
 	var $page;
 	var $position;
 	var $priority;
 	var $fields;
-	
+
     public function __construct( $id, $title, $page, $position, $priority, $fields ) {
 		$this->id = $id;
 		$this->title = $title;
@@ -436,16 +438,16 @@ class Reactor_Add_Meta_Box {
 		$this->position = $position;
 		$this->priority = $priority;
 		$this->fields = $fields;
-		
+
 		if( !is_array( $this->page ) )
 			$this->page = array( $this->page );
-		
+
 		add_action( 'admin_enqueue_scripts', array( $this, 'meta_box_enqueue_scripts' ) );
 		add_action( 'admin_head',  array( $this, 'meta_box_head' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ) );
 		add_action( 'save_post',  array( $this, 'save_meta_box' ));
     }
-	
+
 	/**
 	 * enqueue necessary scripts and styles
 	 */
@@ -462,7 +464,7 @@ class Reactor_Add_Meta_Box {
 				$deps[] = 'wp-color-picker';
 
 			wp_enqueue_script( 'meta_box', CUSTOM_METABOXES_DIR . '/js/scripts.js', $deps );
-			
+
 			// css
 			$deps = array();
 			wp_register_style( 'jqueryui', CUSTOM_METABOXES_DIR . '/css/jqueryui.css' );
@@ -473,16 +475,16 @@ class Reactor_Add_Meta_Box {
 			wp_enqueue_style( 'meta_box', CUSTOM_METABOXES_DIR . '/css/meta_box.css', $deps );
 		}
 	}
-	
+
 	/**
 	 * adds scripts to the head for special fields with extra js requirements
 	 */
 	function meta_box_head() {
 		if ( in_array( get_post_type(), $this->page ) && ( meta_box_find_field_type( 'date', $this->fields ) || meta_box_find_field_type( 'slider', $this->fields ) ) ) {
-		
+
 			echo '<script type="text/javascript">
 						jQuery(function( $) {';
-			
+
 			foreach ( $this->fields as $field ) {
 				switch( $field['type'] ) {
 					// date
@@ -493,7 +495,7 @@ class Reactor_Add_Meta_Box {
 					break;
 					// slider
 					case 'slider' :
-					$meta_value = get_post_meta( get_the_ID(), $field['id'], true );                                            
+					$meta_value = get_post_meta( get_the_ID(), $field['id'], true );
 					$value = ( !empty( $meta_value ) ) ? $meta_value : $field['min'];
 					echo '
 							$( "#' . $field['id'] . '-slider" ).slider({
@@ -508,13 +510,13 @@ class Reactor_Add_Meta_Box {
 					break;
 				}
 			}
-			
+
 			echo '});
 				</script>';
-		
+
 		}
 	}
-	
+
 	/**
 	 * adds the meta box for every post type in $page
 	 */
@@ -523,14 +525,14 @@ class Reactor_Add_Meta_Box {
 			add_meta_box( $this->id, $this->title, array( $this, 'meta_box_callback' ), $page, $this->position, $this->priority );
 		}
 	}
-	
+
 	/**
 	 * outputs the meta box
 	 */
 	function meta_box_callback() {
 		// Use nonce for verification
 		wp_nonce_field( 'custom_meta_box_nonce_action', 'custom_meta_box_nonce_field' );
-		
+
 		// Begin the field table and loop
 		echo '<table class="form-table meta_box">';
 		foreach ( $this->fields as $field) {
@@ -545,27 +547,27 @@ class Reactor_Add_Meta_Box {
 				echo '<tr>
 						<th style="width:20%"><label for="' . $field['id'] . '">' . $field['label'] . '</label></th>
 						<td>';
-						
+
 						$meta = get_post_meta( get_the_ID(), $field['id'], true);
 						echo custom_meta_box_field( $field, $meta );
-						
+
 				echo     '<td>
 					</tr>';
 			}
 		} // end foreach
 		echo '</table>'; // end table
 	}
-	
+
 	/**
 	 * saves the captured data
 	 */
 	function save_meta_box( $post_id ) {
 		$post_type = get_post_type();
-		
+
 		// verify nonce
 		if ( ! isset( $_POST['custom_meta_box_nonce_field'] ) )
 			return $post_id;
-		if ( ! ( in_array( $post_type, $this->page ) || wp_verify_nonce( $_POST['custom_meta_box_nonce_field'],  'custom_meta_box_nonce_action' ) ) ) 
+		if ( ! ( in_array( $post_type, $this->page ) || wp_verify_nonce( $_POST['custom_meta_box_nonce_field'],  'custom_meta_box_nonce_action' ) ) )
 			return $post_id;
 		// check autosave
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
@@ -573,7 +575,7 @@ class Reactor_Add_Meta_Box {
 		// check permissions
 		if ( ! current_user_can( 'edit_page', $post_id ) )
 			return $post_id;
-		
+
 		// loop through fields and save the data
 		foreach ( $this->fields as $field ) {
 			if( $field['type'] == 'section' ) {
@@ -611,5 +613,5 @@ class Reactor_Add_Meta_Box {
 			}
 		} // end foreach
 	}
-	
+
 }
