@@ -20,15 +20,13 @@
     	<?php endif; ?>
 
         <footer id="footer" class="site-footer">
-        	<div>
-				<div class="row">
-					<div class="<?php reactor_columns( 12 ); ?>">
+			<div class="row">
+				<div class="<?php reactor_columns( 12 ); ?>">
 
-							<?php get_sidebar('footer'); ?>
+						<?php get_sidebar('footer'); ?>
 
-					</div><!-- .columns -->
-				</div><!-- .row -->
-			</div>
+				</div><!-- .columns -->
+			</div><!-- .row -->
 
 			<div class="site-info">
 				<div class="row">

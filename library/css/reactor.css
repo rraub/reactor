@@ -127,32 +127,32 @@ textarea {
 }
 
 /* Footer ---------------------- */
-#footer > div {
+.site-footer > div {
     clear: both;
     padding: 2.5em 0;
 }
-#footer > #site-info {
+.site-footer > .site-info {
     padding: 1.063em 0 0;
     background: #333;
     color: #858585;
 }
-#footer > #site-info a {
+.site-footer > .site-info a {
     color: #858585;
 }
-#colophon {
+.content-info {
     text-align: left;
 }
-#colophon, .footer-links li {
+.content-info, .footer-links li {
     font-size: 0.75em;
 }
-#footer-links li {
+.footer-links li {
     margin-left: 0.625em;
 }
-#footer-links .inline-list {
+.footer-links .inline-list {
     margin-left: 0;
 }
 @media only screen and (min-width: 48em) {
-    #colophon {
+    .content-info {
         text-align: right;
     }
 }
