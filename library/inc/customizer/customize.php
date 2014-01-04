@@ -234,7 +234,7 @@ if ( !function_exists('reactor_customize_register') ) {
 						'name'             => '_customize-dropdown-categories-' . $this->id,
 						'echo'             => 0,
 						'hide_empty'       => false,
-						'show_option_none' => '',
+						'show_option_none' => ' ',
 						'hide_if_empty'    => false,
 						'selected'         => $this->value(),
 					 )
@@ -265,7 +265,7 @@ if ( !function_exists('reactor_customize_register') ) {
 						'name'              => '_customize-dropdown-slide-categories-' . $this->id,
 						'echo'              => 0,
 						'hide_empty'        => false,
-						'show_option_none'  => '',
+						'show_option_none'  => ' ',
 						'hide_if_empty'     => false,
 						'name'              => 'slide-cat',
 						'taxonomy'          => 'slide-category',
