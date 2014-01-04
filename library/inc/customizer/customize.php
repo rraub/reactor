@@ -234,7 +234,7 @@ if ( !function_exists('reactor_customize_register') ) {
 						'name'             => '_customize-dropdown-categories-' . $this->id,
 						'echo'             => 0,
 						'hide_empty'       => false,
-						'show_option_none' => '&mdash; ' . __('Select', 'reactor') . ' &mdash;',
+						'show_option_none' => '',
 						'hide_if_empty'    => false,
 						'selected'         => $this->value(),
 					 )
@@ -265,7 +265,7 @@ if ( !function_exists('reactor_customize_register') ) {
 						'name'              => '_customize-dropdown-slide-categories-' . $this->id,
 						'echo'              => 0,
 						'hide_empty'        => false,
-						'show_option_none'  => '&mdash; ' . __('Select', 'reactor') . ' &mdash;',
+						'show_option_none'  => '',
 						'hide_if_empty'     => false,
 						'name'              => 'slide-cat',
 						'taxonomy'          => 'slide-category',
@@ -449,28 +449,7 @@ if ( !function_exists('reactor_customize_register') ) {
 					'type'     => 'checkbox',
 					'priority' => 4,
 				 ) );
-		}
 
-		if ( in_array('side-menu', $menus[0] ) ) {
-			$wp_customize->add_setting('reactor_options[side_nav_type]', array(
-				'default'        => 'accordion',
-				'type'           => 'option',
-				'capability'     => 'manage_options',
-				'theme_supports' => 'reactor-menus',
-			 ) );
-				$wp_customize->add_control('reactor_options[side_nav_type]', array(
-					'label'   => __('Side Menu Type', 'reactor'),
-					'section' => 'reactor_customizer_nav',
-					'type'    => 'radio',
-					'choices' => array(
-						'accordion' => __('Accordion', 'reactor'),
-						'side_nav'  => __('Side Nav', 'reactor'),
-					 ),
-					 'priority' => 5
-				 ) );
-		}
-
-		if ( in_array('main-menu', $menus[0] ) ) {
 			$wp_customize->add_setting('reactor_options[mobile_menu]', array(
 				'default'        => 1,
 				'type'           => 'option',
