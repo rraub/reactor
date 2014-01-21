@@ -225,28 +225,41 @@ function reactor_excerpt_length( $length ) {
 /**
  * 10. Customize the output of captions
  *
+ * @author Justin Tadlock <justin@justintadlock.com>
+ * @copyright Copyright (c) 2013, Justin Tadlock
+ * @link http://justintadlock.com
+ * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * @since 1.0.0
  */
 function reactor_cleaner_caption( $output, $attr, $content ) {
 	if ( is_feed() ) {
 		return $output;
 	}
+
 	$defaults = array(
-		'id'      => '',
-		'align'   => 'alignnone',
-		'width'   => '',
+		'id' => '',
+		'align' => 'alignnone',
+		'width' => '',
 		'caption' => ''
-	 );
+	);
+	$defaults = apply_filters( 'cleaner_caption_defaults', $defaults );
+	$attr = apply_filters( 'cleaner_caption_args', $attr );
 	$attr = shortcode_atts( $defaults, $attr );
+
 	if ( 1 > $attr['width'] || empty( $attr['caption'] ) ) {
 		return $content;
 	}
-	$attributes = ' class="figure wp-caption ' . esc_attr( $attr['align'] ) . '"';
-	$output = '<figure' . $attributes . '>';
+
+	$attributes = ( !empty( $attr['id'] ) ? ' id="' . esc_attr( $attr['id'] ) . '"' : '' );
+	$attributes .= ' class="wp-caption ' . esc_attr( $attr['align'] ) . '"';
+	$attributes .= ' style="max-width: ' . esc_attr( $attr['width'] ) . 'px"';
+
+	$output = '<figure' . $attributes .'>';
 	$output .= do_shortcode( $content );
 	$output .= '<figcaption class="wp-caption-text">' . $attr['caption'] . '</figcaption>';
 	$output .= '</figure>';
-	return $output;
+
+	return apply_filters( 'cleaner_caption', $output );
 }
 
 /**

@@ -22,7 +22,7 @@ if ( !function_exists('reactor_slider') ) {
 			'slider_id'      => '',
 			'data_options'   => '',
 			'echo'           => true
-		 );
+		);
 		$args = wp_parse_args( $args, $defaults );
 		$args = apply_filters( 'reactor_slider_args', $args );
 

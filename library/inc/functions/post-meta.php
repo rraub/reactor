@@ -22,12 +22,12 @@ if ( !function_exists('reactor_post_meta') ) {
 		global $post; $meta = ''; $output = '';
 		
 		$defaults = array( 
-			'show_author' => true,
-			'show_date'   => true,
-			'show_cat'    => true,
-			'show_tag'    => true,
-			'show_icons'  => false,
-			'show_uncategorized' => false,
+			'author' => true,
+			'date'   => true,
+			'cat'    => true,
+			'tag'    => true,
+			'icons'  => true,
+			'uncategorized' => false,
 		 );
         $args = wp_parse_args( $args, $defaults );
 		
@@ -40,7 +40,7 @@ if ( !function_exists('reactor_post_meta') ) {
 			$categories = get_the_category();			
 			foreach ( $categories as $category ) {
 				$count++;
-				if ( $args['show_uncategorized'] ) {
+				if ( $args['uncategorized'] ) {
 					$categories_list .= '<a href="' . get_category_link( $category->term_id ) . '" title="'.sprintf( __('View all posts in %s', 'reactor'), $category->name ) . '">' . $category->name . '</a>';
 					if ( $count != count( $categories ) ){
 						$categories_list .= ', ';
@@ -80,20 +80,20 @@ if ( !function_exists('reactor_post_meta') ) {
 		 * 1 is category, 2 is tag, 3 is the date and 4 is the author's name
 		 */
 		if ( $date || $categories_list || $author || $tag_list ) {
-			if ( $args['show_icons'] ) {
-				$meta .= ( $author && $args['show_author'] ) ? '<i class="social foundicon-torso" title="Written by"></i> <span class="by-author">%4$s</span>' : '';
-				$meta .= ( $date && $args['show_date'] ) ? '<i class="general foundicon-calendar" title="Publish on"></i> %3$s' : '';
-				$meta .= ( $categories_list && $args['show_cat'] ) ? '<i class="general foundicon-folder" title="Posted in"></i> %1$s' : '';
-				$meta .= ( $tag_list && $args['show_tag'] ) ? '<div class="entry-tags"><i class="general foundicon-flag" title="Tagged with"></i> %2$s</div>' : '';
+			if ( $args['icons'] ) {
+				$meta .= ( $author && $args['author'] ) ? '<i class="social foundicon-torso" title="Written by"></i> <span class="by-author">%4$s</span>' : '';
+				$meta .= ( $date && $args['date'] ) ? '<i class="general foundicon-calendar" title="Publish on"></i> %3$s' : '';
+				$meta .= ( $categories_list && $args['cat'] ) ? '<i class="general foundicon-folder" title="Posted in"></i> %1$s' : '';
+				$meta .= ( $tag_list && $args['tag'] ) ? '<div class="entry-tags"><i class="general foundicon-flag" title="Tagged with"></i> %2$s</div>' : '';
 				
 				if ( $meta ) {
 					$output = '<div class="entry-meta icons">' . $meta . '</div>';
 				}
 			} else {
-				$meta .= ( $date && $args['show_date'] ) ? '%3$s ' : '';
-				$meta .= ( $author && $args['show_author'] ) ? __('by', 'reactor') . ' <span class="by-author">%4$s</span> ' : '';
-				$meta .= ( $categories_list && $args['show_cat'] ) ? __('in', 'reactor') . ' %1$s' : '';
-				$meta .= ( $tag_list && $args['show_tag'] ) ? '<div class="entry-tags">' . __('Tags:', 'reactor') . ' %2$s</div>' : '';
+				$meta .= ( $date && $args['date'] ) ? '%3$s ' : '';
+				$meta .= ( $author && $args['author'] ) ? __('by', 'reactor') . ' <span class="by-author">%4$s</span> ' : '';
+				$meta .= ( $categories_list && $args['cat'] ) ? __('in', 'reactor') . ' %1$s' : '';
+				$meta .= ( $tag_list && $args['tag'] ) ? '<div class="entry-tags">' . __('Tags:', 'reactor') . ' %2$s</div>' : '';
 
 				if ( $meta ) {
 					$output = '<div class="entry-meta">' . __('Posted: ', 'reactor') . $meta . '</div>';

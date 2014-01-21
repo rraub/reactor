@@ -46,7 +46,7 @@ function reactor_register_post_types() {
 				'show_ui'            => true,
 				'show_in_menu'       => true,
 				'query_var'          => true,
-				'menu_icon'          => get_template_directory_uri() . '/library/img/admin/admin-slides.png',
+				'menu_icon'          => 'dashicons-format-gallery',
 				'rewrite'	         => true,
 				'capability_type'    => 'post',
 				'taxonomies'         => array('slide-category'),

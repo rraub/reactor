@@ -10,14 +10,23 @@
  * @license GNU General Public License v2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
  */
 
-function reactor_columns( $columns = '', $echo = true, $sidebar = false, $sidebar_id = null, $push_pull = 0 ) {
+function reactor_columns( $columns = '', $args = '' ) {
+
+	$defaults = array(
+		'echo'       => true,
+		'sidebar'    => false,
+		'sidebar_id' => null,
+		'push_pull'  => 0
+	);
+	$args = wp_parse_args( $args, $defaults );
+	$args = apply_filters( 'reactor_columns_args', $args );
 
 	// add push/pull columns
 	$pushpull = '';
-	if ( $push_pull > 0 ) {
-		$pushpull = ' push-' . intval( $push_pull );
-	} elseif ( $push_pull < 0 ) {
-		$pushpull = ' pull-' . intval( abs( $push_pull ) );
+	if ( $args['push_pull'] > 0 ) {
+		$pushpull = ' push-' . intval( $args['push_pull'] );
+	} elseif ( $args['push_pull'] < 0 ) {
+		$pushpull = ' pull-' . intval( abs( $args['push_pull'] ) );
 	}
 
 	// if array of 2 numbers is passed to the function
@@ -44,7 +53,7 @@ function reactor_columns( $columns = '', $echo = true, $sidebar = false, $sideba
 	$tumblog = reactor_option('tumblog_icons', false);
 
 	// else check if columns are for a sidebar
-	if ( true == $sidebar ) {
+	if ( true == $args['sidebar'] ) {
 
 		// sidebar columns based on layout
 		switch ( $layout ) {
@@ -67,7 +76,7 @@ function reactor_columns( $columns = '', $echo = true, $sidebar = false, $sideba
 		if ( '3c-r' == $layout ) {
 			$classes[] = 'pull-6';
 		}
-		elseif ( '3c-c' == $layout && 1 == $sidebar_id ) {
+		elseif ( '3c-c' == $layout && 1 == $args['sidebar_id'] ) {
 			$classes[] = 'pull-6';
 		}
 		elseif ( '2c-r' == $layout ) {
@@ -138,7 +147,7 @@ function reactor_columns( $columns = '', $echo = true, $sidebar = false, $sideba
 	$columns = implode( ' ', array_map( 'esc_attr', $classes ) );
 
 	// echo classes unless echo false
-	if ( false == $echo ) {
+	if ( false == $args['echo'] ) {
 		return apply_filters('reactor_content_cols', $columns);
 	} else {
 		echo apply_filters('reactor_content_cols', $columns);

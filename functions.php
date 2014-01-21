@@ -85,7 +85,7 @@ function reactor_theme_setup() {
 	add_theme_support('automatic-feed-links');
 
 	// editor stylesheet for TinyMCE
-	add_editor_style( array('/library/css/foundation.min.css', '/library/css/foundicons.css', '/library/css/reactor.css') );
+	add_editor_style( array('/library/css/editor.css') );
 
 	if ( !isset( $content_width ) ) $content_width = 1000;
 

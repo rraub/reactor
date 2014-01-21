@@ -14,7 +14,7 @@
 
         <main id="main" class="site-main" role="main">
         	<div class="row">
-                <div class="<?php reactor_columns(); ?>">
+                <div class="<?php reactor_columns(12); ?>">
 
                     <article id="post-0" class="post error404 no-results not-found">
                         <header class="entry-header">

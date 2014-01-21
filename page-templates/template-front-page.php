@@ -17,17 +17,21 @@ $post_columns = reactor_option('frontpage_post_columns', 3); ?>
 	<div id="primary" class="content-area">
 
         <section id="slider">
-            <?php // slider function passing category from options
-			reactor_slider( array(
-				'category'     => $slider_category,
-				'slider_id'    => 'slider-front-page',
-				'data_options' => array(
-					'animation'       => 'slide',
-					'slide_number'    => 'false',
-					'pause_on_hover'  => 'false',
-					),
-				)
-			); ?>
+        	<div class="row">
+                <div class="large-12 columns">
+		            <?php // slider function passing category from options
+					reactor_slider( array(
+						'category'     => $slider_category,
+						'slider_id'    => 'slider-front-page',
+						'data_options' => array(
+							'animation'       => 'slide',
+							'slide_number'    => 'false',
+							'pause_on_hover'  => 'false',
+							),
+						)
+					); ?>
+				</div>
+			</div>
         </section><!-- #slider -->
 
         <main id="main" class="site-main" role="main">
