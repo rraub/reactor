@@ -72,7 +72,6 @@ if ( !function_exists('reactor_slider') ) {
 		}
 
 		if ( $slider_query->have_posts() ) :
-			$output .= '<div class="slideshow-wrapper">';
 			$output .= '<div class="preloader"></div>';
             $output .= '<ul' . $slider_id . ' data-orbit' . $data_options . '>';
 
@@ -138,7 +137,7 @@ if ( !function_exists('reactor_slider') ) {
 				$output .= '</li>';
 
         	endwhile;
-			$output .= '</ul></div>';
+			$output .= '</ul>';
 
 			if ( false == $args['echo'] ) {
 				return apply_filters('reactor_slider', $output, $args);
