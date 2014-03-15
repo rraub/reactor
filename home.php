@@ -10,26 +10,20 @@
 
 <?php get_header(); ?>
 
-	<div id="primary" class="content-area">
+    <section id="posts-page" class="row">
+        <div class="<?php reactor_columns(); ?>">
 
-        <main id="main" class="site-main" role="main">
-        	<div class="row">
-                <div class="<?php reactor_columns(); ?>">
+			<?php /* get the page loop
+			only works when posts page is set in the reading settings */
+            get_template_part('loops/loop', 'page'); ?>
 
-					<?php /* get the page loop
-					only works when posts page is set in the reading settings */
-                    get_template_part('loops/loop', 'page'); ?>
+			<?php // get the loop
+			get_template_part('loops/loop', 'index'); ?>
 
-					<?php // get the loop
-					get_template_part('loops/loop', 'index'); ?>
+        </div><!-- .columns -->
 
-                </div><!-- .columns -->
+        <?php get_sidebar(); ?>
 
-                <?php get_sidebar(); ?>
-
-            </div><!-- .row -->
-        </main><!-- #main -->
-
-	</div><!-- #primary -->
+    </section><!-- #posts-page.row -->
 
 <?php get_footer(); ?>

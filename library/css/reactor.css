@@ -177,6 +177,10 @@ textarea {
 /* Footer ---------------------- */
 .site-footer {
     background-color: #eee;
+    margin-top: 1.25rem;
+}
+.home .site-footer {
+    margin-top: 0;
 }
 .site-footer > div {
     clear: both;
@@ -347,7 +351,7 @@ ol.commentlist li {
 
 /* Breadcrumbs ---------------------- */
 ul.breadcrumbs {
-    margin: 1.25rem 0;
+    margin: 1.25rem 0 0;
 }
 
 /* Pagination ---------------------- */

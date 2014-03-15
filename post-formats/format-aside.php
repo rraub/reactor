@@ -58,7 +58,7 @@ elseif ( is_page_template('page-templates/template-news-page.php') ) {
                     edit_post_link( __('Edit', 'reactor'), '<div class="edit-link"><span>', '</span></div>');
                     endif; ?>
 
-                    <?php if ( is_single() ) : ?>
+                    <?php if ( is_single() ) :
                     $exclude = ( reactor_option('frontpage_exclude_cat', 1) ) ? reactor_option('frontpage_post_category', '') : ''; ?>
                     <nav class="nav-single">
                         <span class="nav-previous alignleft">

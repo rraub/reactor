@@ -7,36 +7,38 @@
  * @since 1.0.0
  */
 ?>
-		<?php
-		if ( current_theme_supports('reactor-breadcrumbs')
-		&& reactor_option('breadcrumbs', 1) ) : ?>
-		<div id="breadcrumbs">
-			<div class="row">
-				<div class="<?php reactor_columns( 12 ); ?>">
-					<?php reactor_breadcrumbs(); ?>
-				</div><!-- .columns -->
-			</div><!-- .row -->
-		</div><!-- #breadcrumbs -->
-    	<?php endif; ?>
+			<?php
+			if ( current_theme_supports('reactor-breadcrumbs')
+			&& reactor_option('breadcrumbs', 1) ) : ?>
+			<div id="breadcrumbs">
+				<div class="row">
+					<div class="<?php reactor_columns( 12 ); ?>">
+						<?php reactor_breadcrumbs(); ?>
+					</div><!-- .columns -->
+				</div><!-- .row -->
+			</div><!-- #breadcrumbs -->
+			<?php endif; ?>
 
-        <footer id="footer" class="site-footer">
+		</main><!-- #content -->
+
+		<footer id="footer" class="site-footer">
 			<div class="row">
 				<div class="<?php reactor_columns( 12 ); ?>">
 
 						<?php get_sidebar('footer'); ?>
 
 				</div><!-- .columns -->
-			</div><!-- .row -->
+			</div><!-- .inner-footer.row -->
 
 			<div class="site-info">
 				<div class="row">
 					<div class="<?php reactor_columns( 6 ); ?>">
 
-					<?php if ( function_exists('reactor_footer_links') ) : ?>
+						<?php if ( function_exists('reactor_footer_links') ) : ?>
 						<nav class="footer-links" role="navigation">
 							<?php reactor_footer_links(); ?>
 						</nav><!-- #footer-links -->
-					<?php endif; ?>
+						<?php endif; ?>
 
 					</div><!--.columns -->
 
@@ -50,13 +52,11 @@
 						</div><!-- #colophon -->
 
 					</div><!-- .columns -->
-				</div><!-- .row -->
+				</div>
 			</div><!-- .site-info -->
-        </footer><!-- #footer -->
+		</footer><!-- #footer -->
 
-    </div><!-- #content -->
-</div><!-- #page -->
+		<?php wp_footer(); ?>
 
-<?php wp_footer(); ?>
-</body>
+	</body>
 </html>

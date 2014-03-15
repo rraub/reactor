@@ -10,25 +10,18 @@
 
 <?php get_header(); ?>
 
-	<div id="primary" class="content-area">
+    <section id="side-nav-page" class="row">
+        <div class="<?php reactor_columns(); ?> push-3">
 
-        <main id="main" class="site-main" role="main">
-        	<div class="row">
+            <?php // get the page loop
+            get_template_part('loops/loop', 'page'); ?>
 
-                <div class="<?php reactor_columns(); ?> push-3">
+        </div><!-- .columns -->
 
-                <?php // get the page loop
-                get_template_part('loops/loop', 'page'); ?>
-
-                </div><!-- .columns -->
-
-                <div id="side-nav" class="<?php reactor_columns( '', array('sidebar' => true) ); ?>">
-                    <?php reactor_side_nav(); ?>
-                </div><!-- #side-menu -->
-
-            </div><!-- .row -->
-        </main><!-- #main -->
-
-	</div><!-- #primary -->
+        <div id="side-nav" class="<?php reactor_columns( '', array('sidebar' => true) ); ?>">
+            <?php reactor_side_nav(); ?>
+        </div><!-- #side-menu -->
+        
+    </section><!-- #side-nav-page.row -->
 
 <?php get_footer(); ?>
