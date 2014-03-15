@@ -163,9 +163,9 @@ function reactor_columns( $columns = '', $args = '' ) {
 	$columns = implode( ' ', array_map( 'esc_attr', $classes ) );
 
 	// echo classes unless echo false
-	if ( false == $args['echo'] ) {
-		return apply_filters('reactor_content_cols', $columns);
-	} else {
+	if ( $args['echo'] ) {
 		echo apply_filters('reactor_content_cols', $columns);
+	} else {
+		return apply_filters('reactor_content_cols', $columns);
 	}
 }

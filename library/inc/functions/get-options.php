@@ -37,7 +37,7 @@ function reactor_option( $name, $default = false, $meta_id = null ) {
 		// if meta isset return the value
 		if ( isset( $meta ) ) {
 			$meta = do_shortcode( $meta );
-			return apply_filters( 'reactor_option_$name', $meta );
+			return apply_filters( "reactor_option_$name", $meta );
 		} 
 		
 	} else {
@@ -47,9 +47,9 @@ function reactor_option( $name, $default = false, $meta_id = null ) {
 		
 	// return the option if it exists
 	if ( isset( $options[ $name ] ) ) {
-		return apply_filters( 'reactor_option_$name', $options[ $name ] );
+		return apply_filters( "reactor_option_$name", $options[ $name ] );
 	}
 		
 	// return default if nothing else
-	return apply_filters( 'reactor_option_$name', $default );
+	return apply_filters( "reactor_option_$name", $default );
 }

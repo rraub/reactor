@@ -128,10 +128,10 @@ if ( !function_exists('reactor_slider') ) {
         	endwhile;
 			$output .= '</ul>';
 
-			if ( false == $args['echo'] ) {
-				return apply_filters('reactor_slider', $output, $args);
-			} else {
+			if ( $args['echo'] ) {
 				echo apply_filters('reactor_slider', $output, $args);
+			} else {
+				return apply_filters('reactor_slider', $output, $args);
 			}
 
         endif;

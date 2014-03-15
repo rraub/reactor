@@ -12,97 +12,86 @@
  */
 
 /**
- * Meta information for current post: categories, tags, author, and date
+ * Meta information for current post: cats, tags, author, and date
  */
 if ( !function_exists('reactor_post_meta') ) {
 	function reactor_post_meta( $args = '' ) {
 		
 		do_action('reactor_post_meta', $args);
 		
-		global $post; $meta = ''; $output = '';
+		global $post; $meta = '';
 		
-		$defaults = array( 
-			'author' => true,
-			'date'   => true,
-			'cat'    => true,
-			'tag'    => true,
-			'icons'  => true,
+		$defaults = array(
+			'include'       => array('author', 'date', 'categories', 'tags'),
+			'show_icons'    => false,
 			'uncategorized' => false,
-		 );
+			'echo'          => true,
+		);
         $args = wp_parse_args( $args, $defaults );
 		
-		if ( 'portfolio' == get_post_type() ) {
-			$categories_list = get_the_term_list( $post->ID, 'portfolio-category', '', ', ', '' );
-		} else {
-			// $categories_list = get_the_category_list(', ');
-			$count = 0;
-			$categories_list = '';
-			$categories = get_the_category();			
-			foreach ( $categories as $category ) {
-				$count++;
-				if ( $args['uncategorized'] ) {
-					$categories_list .= '<a href="' . get_category_link( $category->term_id ) . '" title="'.sprintf( __('View all posts in %s', 'reactor'), $category->name ) . '">' . $category->name . '</a>';
-					if ( $count != count( $categories ) ){
-						$categories_list .= ', ';
-					}
-				} else {
-					if ( $category->slug != 'uncategorized' || $category->name != 'Uncategorized' ) {
-						$categories_list .= '<a href="' . get_category_link( $category->term_id ) . '" title="'.sprintf( __('View all posts in %s', 'reactor'), $category->name ) . '">' . $category->name . '</a>';
-						if ( $count != count( $categories ) ){
-							$categories_list .= ', ';
-						}
+		// cats
+		$count = 0;
+		$categories = '';
+		$cats = get_the_category();			
+		foreach ( $cats as $cat ) {
+			$count++;
+			if ( $args['uncategorized'] ) {
+				$categories .= '<a href="' . esc_url( get_category_link( $cat->term_id ) ) . '" ';
+				$categories .= 'title="' . esc_attr( __('View all posts in ', 'reactor') . $cat->name ) . '">' . $cat->name . '</a>';
+				if ( $count != count( $cats ) ){
+					$categories .= ', ';
+				}
+			} else {
+				if ( $cat->slug != 'uncategorized' || $cat->name != 'Uncategorized' ) {
+					$categories .= '<a href="' . esc_url( get_category_link( $cat->term_id ) ) . '" ';
+					$categories .= 'title="' . esc_attr( __('View all posts in ', 'reactor') . $cat->name ) . '">' . $cat->name . '</a>';
+					if ( $count != count( $cats ) ){
+						$categories .= ', ';
 					}
 				}
-					
 			}
 		}
 		
-		if ( 'portfolio' == get_post_type() ) {
-			$tag_list = get_the_term_list( $post->ID, 'portfolio-tag', '', ', ', '' );
-		} else {
-			$tag_list = get_the_tag_list( '', ', ', '' );
+		// Tags
+		$tags = get_the_tag_list( '', ', ', '' );
+	
+		// Date
+		$date  = '<a href="' . esc_url( get_month_link( get_the_time('Y'), get_the_time('m') ) ) . '" ';
+		$date .= '"title="' .  esc_attr( __('View all posts from ', 'reactor') . get_the_time('M') . get_the_time('Y') ) . '" rel="bookmark">';
+		$date .= '<time class="entry-date datetime="' . esc_attr( get_the_date('c') ) . '" pubdate>' . esc_html( get_the_date() ) . '</time></a>';
+	
+		// Author
+		$author  = '<a class="author" href="' . esc_url( get_author_posts_url( get_the_author_meta('ID') ) ) . '" ';
+		$author .= 'title="' . esc_attr( __('View all posts by ', 'reactor') . get_the_author() ) . '" rel="author">';
+		$author .= get_the_author() . '</a>';
+
+		$include = (array)$args['include'];
+		if( in_array( 'date', $include ) ) {
+			$meta .= ( $args['show_icons'] ) ? '<i class="fi-calendar" title="Written by"></i> ' : __('Posted', 'reactor');
+			$meta .= ' ' . $date . ' ';
 		}
-	
-		$date = sprintf('<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s" pubdate>%4$s</time></a>',
-			esc_url( get_month_link( get_the_time('Y'), get_the_time('m') ) ),
-			esc_attr( sprintf( __('View all posts from %s %s', 'reactor'), get_the_time('M'), get_the_time('Y') ) ),
-			esc_attr( get_the_date('c') ),
-			esc_html( get_the_date() )
-		 );
-	
-		$author = sprintf('<span class="author"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>',
-			esc_url( get_author_posts_url( get_the_author_meta('ID') ) ),
-			esc_attr( sprintf( __('View all posts by %s', 'reactor'), get_the_author() ) ),
-			get_the_author()
-		 );
-	
-		/**
-		 * 1 is category, 2 is tag, 3 is the date and 4 is the author's name
-		 */
-		if ( $date || $categories_list || $author || $tag_list ) {
-			if ( $args['icons'] ) {
-				$meta .= ( $author && $args['author'] ) ? '<i class="social foundicon-torso" title="Written by"></i> <span class="by-author">%4$s</span>' : '';
-				$meta .= ( $date && $args['date'] ) ? '<i class="general foundicon-calendar" title="Publish on"></i> %3$s' : '';
-				$meta .= ( $categories_list && $args['cat'] ) ? '<i class="general foundicon-folder" title="Posted in"></i> %1$s' : '';
-				$meta .= ( $tag_list && $args['tag'] ) ? '<div class="entry-tags"><i class="general foundicon-flag" title="Tagged with"></i> %2$s</div>' : '';
-				
-				if ( $meta ) {
-					$output = '<div class="entry-meta icons">' . $meta . '</div>';
-				}
-			} else {
-				$meta .= ( $date && $args['date'] ) ? '%3$s ' : '';
-				$meta .= ( $author && $args['author'] ) ? __('by', 'reactor') . ' <span class="by-author">%4$s</span> ' : '';
-				$meta .= ( $categories_list && $args['cat'] ) ? __('in', 'reactor') . ' %1$s' : '';
-				$meta .= ( $tag_list && $args['tag'] ) ? '<div class="entry-tags">' . __('Tags:', 'reactor') . ' %2$s</div>' : '';
-
-				if ( $meta ) {
-					$output = '<div class="entry-meta">' . __('Posted: ', 'reactor') . $meta . '</div>';
-				}
+		if( in_array( 'author', $include ) ) {
+			$meta .= ( $args['show_icons'] ) ? '<i class="fi-torso" title="Publish on"></i> ' : __('by', 'reactor');
+			$meta .= ' ' . $author  . ' ';
+		}
+		if( in_array( 'categories', $include ) ) {
+			if( $categories ) {
+				$meta .= ( $args['show_icons'] ) ? '<i class="fi-folder" title="Posted in"></i> ' : __('in', 'reactor');
+				$meta .= ' ' . $categories  . ' ';
 			}
-	
-			$post_meta = sprintf( $output, $categories_list, $tag_list, $date, $author );
+		}
+		if( in_array( 'tags', $include ) ) {
+			if( $tags ) {
+				$meta .= '<div class="entry-tags">';
+				$meta .= ( $args['show_icons'] ) ? '<i class="fi-price-tag" title="Tagged with"></i> ' : __('Tags:', 'reactor');
+				$meta .= ' ' . $tags . '</div>';
+			}
+		}
 
-			echo apply_filters('reactor_post_meta', $post_meta, $defaults);
+		if( $args['echo'] ) {
+			echo apply_filters('reactor_post_meta', $meta, $defaults);
+		} else {
+			return apply_filters('reactor_post_meta', $meta, $defaults);
 		}
 	}
 }

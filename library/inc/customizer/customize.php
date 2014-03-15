@@ -63,10 +63,10 @@ function reactor_customizer_css() {
 	    $output .= "\n" . 'body, p { font-family: ' . reactor_option('content_font') . '; }';
 	}
 	if ( reactor_option('link_color') ) {
-	    $output .= "\n" . '#main a { color: ' . reactor_option('link_color') . '; }';
+	    $output .= "\n" . '#content a { color: ' . reactor_option('link_color') . '; }';
 	}
 	if ( reactor_option('link_hover_color') ) {
-	    $output .= "\n" . '#main a:hover { color: ' . reactor_option('link_hover_color') . '; }';
+	    $output .= "\n" . '#content a:hover { color: ' . reactor_option('link_hover_color') . '; }';
 	}
 
 	echo ( $output ) ? '<style>' . apply_filters('reactor_customizer_css', $output) . "\n" . '</style>' . "\n" : '';
@@ -515,7 +515,7 @@ if ( !function_exists('reactor_customize_register') ) {
 				 ) );
 
 			$wp_customize->add_setting('reactor_options[post_readmore]', array(
-				'default'    => __('Read More', 'reactor') . '&raquo;',
+				'default'    => __('Read More', 'reactor') . ' &raquo;',
 				'type'       => 'option',
 				'capability' => 'manage_options',
 				'transport'  => 'postMessage',
