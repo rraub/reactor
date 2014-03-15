@@ -1,32 +1,73 @@
-@charset "utf-8";
-/* Reactor - Anthony Wilhelm - http://awtheme.com/ */
-
-/* Main ---------------------- */
-
-/* WP Classes */
-.alignleft {
-    float: left;
+/* WordPress Core ---------------------- */
+.alignnone {
+    margin: 0.25rem 1.25rem 1.25rem 0;
+}
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 0.25rem auto;
 }
 .alignright {
-    float: right;
+    float:right;
+    margin: 0.25rem 0 1.25rem 1.25rem;
+}
+.alignleft {
+    float: left;
+    margin: 0.25rem 1.25rem 1.25rem 0;
 }
 .aligncenter {
     display: block;
-    margin: 0 auto;
+    margin: 0.25rem auto;
 }
-.bypostauthor, .gallery-caption {
-    display: inherit;
+a img.alignright {
+    float: right;
+    margin: 0.25rem 0 1.25rem 1.25rem;
 }
-.wp-caption-text {
-    position: relative;
-    font-size: 0.9em;
+a img.alignnone {
+    margin: 0.25rem 1.25rem 1.25rem 0;
 }
-.sticky {
+a img.alignleft {
+    float: left;
+    margin: 0.25rem 1.25rem 1.25rem 0;
+}
+a img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+.wp-caption {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    max-width: 96%;
+    padding: 0.25rem 0.25rem 0.75rem;
+    text-align: center;
+}
+.wp-caption.alignnone {
+    margin: 0.25rem 1.25rem 1.25rem 0;
+}
+.wp-caption.alignleft {
+    margin: 0.25rem 1.25rem 1.25rem 0;
+}
+.wp-caption.alignright {
+    margin: 0.25rem 0 1.25rem 1.25rem;
+}
+.wp-caption img {
+    border: 0 none;
+    height: auto;
+    margin: 0;
+    max-width: 98.5%;
+    padding: 0;
+    width: auto;
+}
+.wp-caption p.wp-caption-text {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    margin: 0;
+    padding: 0 0.25rem 0.25rem;
 }
 
 /* Responsive Images */
 .wp-caption {
-    padding: 0.25em;
     max-width: 100%;
 }
 img[class*=align], img[class*=wp-image-], img[class*=attachment-] {
@@ -39,13 +80,13 @@ img.size-full, img.size-large, img.header-image, img.wp-post-image {
 .entry-content .twitter-tweet-rendered {
     max-width: 100%!important;
 }
-.entry-content img, .comment-content img, .widget img, embed, iframe, object, video {
+.entry-content img, .comment-content img, .widget img, rembed, iframe, object, video {
     max-width: 100%;
 }
 
 /* Misc Styles */
 ul, ol, dl {
-    margin-left: 1.125em;
+    margin-left: 1.125rem;
 }
 .gallery dl {
     margin-left: 0;
@@ -62,12 +103,12 @@ textarea {
 /*  fix for h1 in top bar causing SEO nightmare */
 .top-bar .name p {
     margin: 0;
-    font-size: 1.0625em;
+    font-size: 1.0625rem;
     line-height: 45px;
 }
 .top-bar .name p a {
     display: block;
-    padding: 0 15px;
+    padding: 0 1.25rem;
     color: white;
     font-weight: bold;
 }
@@ -77,8 +118,15 @@ textarea {
 }
 
 /* Header ---------------------- */
+.site-header {
+    background-color: #eee;
+    margin-bottom: 1.25rem;
+}
+.home .site-header {
+    margin-bottom: 0;
+}
 .site-header > div {
-    padding: 1.875em 0;
+    padding: 1.875rem 0;
 }
 .top-bar .title-area {
     margin-left: 0;
@@ -86,7 +134,7 @@ textarea {
 .site-title {
     margin-bottom: 0;
     font-weight: bold;
-    font-size: 2.75em;
+    font-size: 2.75rem;
     line-height: 1.4;
 }
 .site-title a {
@@ -94,47 +142,50 @@ textarea {
 }
 .site-description {
     margin-bottom: 0;
-    font-size: 1.688em;
+    font-size: 1.688rem;
     font-weight: lighter;
 }
 .site-logo {
     float: left;
-    margin: 0 0.625em 1.25em 0;
+    margin: 0 0.625rem 1.25rem 0;
 }
 #mobile-menu-button .button {
     margin-bottom: 0;
-    padding: 0.75em 0.5em;
+    padding: 0.75rem 0.5rem;
     width: auto;
 }
 .mobile-menu-icon {
     display: block;
-    width: 1.25em;
-    height: 0.125em;
-    border-radius: 0.063em;
-    background: #777;
-    box-shadow: 0 0.063em 0 rgba(0, 0, 0, 0.25);
+    width: 1.25rem;
+    height: 0.125rem;
+    border-radius: 0.063rem;
+    background-color: #777;
+    box-shadow: 0 0.063rem 0 rgba(0, 0, 0, 0.25);
 }
 .mobile-menu-icon + .mobile-menu-icon {
-    margin: 0.188em 0 0;
+    margin: 0.188rem 0 0;
 }
 #mobile-menu-button {
     float: left;
 }
-@media only screen and (min-width: 48em) {
+@media only screen and (min-width: 48rem) {
     .top-bar-section .search-form {
-        padding: 0 15px;
+        padding: 0 10.25rem;
     }
 }
 
 /* Footer ---------------------- */
+.site-footer {
+    background-color: #eee;
+}
 .site-footer > div {
     clear: both;
-    padding: 2.5em 0;
+    padding: 1.875rem 0;
 }
 .site-footer > .site-info {
-    padding: 1.063em 0 0;
-    background: #333;
+    background-color: #333;
     color: #858585;
+    padding: 1.25rem 0;
 }
 .site-footer > .site-info a {
     color: #858585;
@@ -142,53 +193,32 @@ textarea {
 .content-info {
     text-align: left;
 }
-.content-info, .footer-links li {
-    font-size: 0.75em;
+.content-info p, .footer-links li {
+    font-size: 0.75rem;
 }
-.footer-links li {
-    margin-left: 0.625em;
+.content-info p, .footer-links .inline-list {
+    margin: 0;
 }
-.footer-links .inline-list {
-    margin-left: 0;
-}
-@media only screen and (min-width: 48em) {
+@media only screen and (min-width: 48rem) {
     .content-info {
         text-align: right;
     }
 }
 
 /* Slider ---------------------- */
-.slide-content {
-	min-height: 100%;
-	max-height: 100%;
-}
-.slide-content .columns {
-	margin: 50px auto;
-}
-.slide-content .overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-	background: rgba(0, 0, 0, 0.3);
-}
 .slide-title {
 	color: #fff;
 }
 .slide-excerpt {
 	margin: 0;
 }
-.slide-content.background {
-	color: #fff;
-}
 
 /* Posts & Pages ---------------------- */
 .entry-icon {
     position: static;
-    font-size: 2.5em;
+    font-size: 2.5rem;
 }
-@media only screen and (min-width: 48em) {
+@media only screen and (min-width: 48rem) {
     .entry-icon {
         position: absolute;
         left: -8.33333%;
@@ -198,9 +228,9 @@ textarea {
     float: right;
 }
 .entry-body {
-    margin-bottom: 1.25em;
-    padding-bottom: 1.25em;
-    border-bottom: 0.063em solid #ddd;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 0.063rem solid #ddd;
 }
 .multi-column .entry-body, .type-page .entry-body {
     margin-bottom: 0;
@@ -208,13 +238,13 @@ textarea {
     border: none;
 }
 .entry-meta {
-    margin-bottom: 0.625em;
+    margin-bottom: 0.625rem;
 }
 .entry-tags {
-    margin-top: 0.625em;
+    margin-top: 0.625rem;
 }
 .nav-single {
-    margin: 1.063em 0 0;
+    margin: 1.063rem 0 0;
 }
 .flex-map iframe {
     width: 100%;
@@ -226,31 +256,31 @@ textarea {
     clear: both;
 }
 .entry-footer .edit-link {
-    margin: 1.063em 0;
+    margin: 1.063rem 0;
 }
 
 /* Post Formats ---------------------- */
 .post.format-chat .entry-content {
-    padding: 0.625em;
-    border: 0.063em solid #ddd;
+    padding: 0.625rem;
+    border: 0.063rem solid #ddd;
 }
 .post.format-chat .entry-content p {
     margin: 0;
 }
 .post.format-chat .entry-content p:nth-child(2n) {
-    background: #eee;
+    background-color: #eee;
 }
 .post.format-chat .entry-footer {
-    margin: 1.063em 0 0;
+    margin: 1.063rem 0 0;
 }
 .post.format-video .flex-video {
     margin-bottom: 0;
 }
-.post.format-gallery .gallery-item {
+.post.format-gallery .gallery-itrem {
     clear: none;
 }
 .post.format-audio .entry-title, .post.format-image .entry-title, .post.format-video .entry-title, .post.format-gallery .entry-title {
-    font-size: 1.125em;
+    font-size: 1.125rem;
 }
 .post.format-audio p, .post.format-gallery p, .post.format-image p, .post.format-link p, .post.format-video p {
     margin-bottom: 0;
@@ -275,33 +305,33 @@ ol.commentlist li {
 }
 #comments, p.nocomments {
     clear: both;
-    padding: 1.063em 0;
+    padding: 1.063rem 0;
 }
 .commentlist li.comment .comment-entry {
     position: relative;
     clear: both;
-    margin-bottom: 1.063em;
-    padding: 0.625em;
-    border: 0.063em solid #e6e6e6;
-    background: #f2f2f2;
+    margin-bottom: 1.25rem;
+    padding: 0.625rem;
+    border: 0.063rem solid #e6e6e6;
+    background-color: #f2f2f2;
 }
 .commentlist li.comment .comment-content {
     position: relative;
     clear: both;
-    margin: 0.625em 0;
-    padding: 0.625em;
-    border: 0.063em solid #e6e6e6;
-    background: #fff;
+    margin: 0.625rem 0;
+    padding: 0.625rem;
+    border: 0.063rem solid #e6e6e6;
+    background-color: #fff;
 }
 .comments-area article header {
-    margin-top: 1.063em;
+    margin-top: 1.063rem;
 }
 .comments-area article header img {
     float: left;
 }
 .comments-area article header cite, .comments-area article header time {
     display: block;
-    margin-left: 3.750em;
+    margin-left: 3.750rem;
 }
 
 /* Widgets ---------------------- */
@@ -309,25 +339,25 @@ ol.commentlist li {
     overflow: hidden;
 }
 .widget .textwidget {
-    margin: 0 0 1.063em;
+    margin: 0 0 1.063rem;
 }
 .tagcloud {
-    padding: 0.313em 0;
+    padding: 0.313rem 0;
 }
 
 /* Breadcrumbs ---------------------- */
 ul.breadcrumbs {
-    margin: 1.875em 0;
+    margin: 1.25rem 0;
 }
 
 /* Pagination ---------------------- */
 ul.pagination {
     clear: both;
-    margin: 1.875em 0 1.25em;
+    margin: 1.875rem 0 1.25rem;
 }
 
 /* Off-Canvas ---------------------- */
-#main:before {
+/*#main:before {
     position: absolute;
     top: 0;
     left: -100%;
@@ -353,7 +383,7 @@ ul.pagination {
     position: absolute;
     z-index: 1;
     margin-left: -100%;
-    padding: 0 0.938em;
+    padding: 0 0.938rem;
     width: 80%;
 }
 .js #main {
@@ -367,7 +397,7 @@ ul.pagination {
 .active #main {
     margin-left: 80%;
 }
-@media only screen and (min-width: 48em) {
+@media only screen and (min-width: 48rem) {
     .js #main {
         position: static;
     }
@@ -379,4 +409,4 @@ ul.pagination {
     .active #main {
         margin-left: 0;
     }
-}
+}*/

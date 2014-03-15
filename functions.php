@@ -36,11 +36,6 @@ function reactor_theme_setup() {
 
 	add_theme_support('reactor-orbit-slider');
 
-	add_theme_support(
-		'reactor-page-templates',
-		array('front-page', 'news-page', 'contact')
-	);
-
 	add_theme_support('reactor-backgrounds');
 
 	add_theme_support('reactor-fonts');

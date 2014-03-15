@@ -31,27 +31,31 @@ function reactor_columns( $columns = '', $args = '' ) {
 
 	// if array of 2 numbers is passed to the function
 	if ( $columns && is_array( $columns ) ) {
-		echo 'large-' . intval( $columns[0] ) . ' small-' . intval( $columns[1] ) . $pushpull . ' columns';
+		$large = isset( $columns[0] ) ? 'large-' . intval( $columns[0] ) : '';
+		$medium = isset( $columns[1] ) ? ' medium-' . intval( $columns[1] ) : '';
+		$small = isset( $columns[2] ) ? ' small-' . intval( $columns[2] ) : '';
+
+		echo $large . $medium . $small . $pushpull . ' columns';
 		return;
 	}
 	// if just a number is passed to the function
 	elseif ( $columns ) {
-		echo 'large-' . intval( $columns ) . ' small-12' . $pushpull . ' columns';
+		echo 'large-' . intval( $columns ) . ' medium-' . intval( $columns ) . ' small-12' . $pushpull . ' columns';
 		return;
 	}
-
 
 	// get the template layout from meta
 	$default = reactor_option('page_layout', '2c-l');
 	$layout = reactor_option('', $default, '_template_layout');
 
-	if ( is_page_template('page-templates/side-menu.php') ) {
-		$layout = 'side-menu';
+	if ( is_page_template('page-templates/template-side-nav.php') ) {
+		$layout = 'side-nav';
 	}
 
 	// check if tumblog icons are used in blog
 	$tumblog = reactor_option('tumblog_icons', false);
-
+	$classes = array();
+	
 	// else check if columns are for a sidebar
 	if ( true == $args['sidebar'] ) {
 
@@ -63,12 +67,14 @@ function reactor_columns( $columns = '', $args = '' ) {
 			case '3c-l':
 			case '3c-r':
 			case '3c-c':
-			case 'side-menu':
+			case 'side-nav':
 				$classes[] = 'large-3';
+				$classes[] = 'medium-3';
 				break;
 			default:
 				// 4 is the default number of columns for 1 sidebar
 				$classes[] = 'large-4';
+				$classes[] = 'medium-4';
 				break;
 		}
 
@@ -82,6 +88,9 @@ function reactor_columns( $columns = '', $args = '' ) {
 		elseif ( '2c-r' == $layout ) {
 			$classes[] = 'pull-8';
 		}
+		elseif ( 'side-nav' == $layout ) {
+			$classes[] = 'pull-9';
+		}
 
 	// else apply columns based on template layout or meta
 	} else {
@@ -92,9 +101,11 @@ function reactor_columns( $columns = '', $args = '' ) {
 				// subtract 1 and offset by 1 if using tumblog icons
 				if ( $tumblog && is_home() ) {
 					$classes[] = 'large-11';
+					$classes[] = 'medium-11';
 					$classes[] = 'large-offset-1';
 				} else {
 					$classes[] = 'large-12';
+					$classes[] = 'medium-12';
 				}
 				break;
 			case '3c-l':
@@ -103,22 +114,27 @@ function reactor_columns( $columns = '', $args = '' ) {
 				// subtract 1 and offset by 1 if using tumblog icons
 				if ( $tumblog && is_home() ) {
 					$classes[] = 'large-5';
+					$classes[] = 'medium-5';
 					$classes[] = 'large-offset-1';
 				} else {
 					$classes[] = 'large-6';
+					$classes[] = 'medium-6';
 				}
 				break;
-			case 'side-menu':
+			case 'side-nav':
 				$classes[] = 'large-9';
+				$classes[] = 'medium-9';
 				break;
 			default:
 				/* 8 is the default number of columns for a page with 1 sidebar
 				subtract 1 and offset by 1 if using tumblog icons */
 				if ( $tumblog && is_home() ) {
 					$classes[] = 'large-7';
+					$classes[] = 'medium-7';
 					$classes[] = 'large-offset-1';
 				} else {
 					$classes[] = 'large-8';
+					$classes[] = 'medium-8';
 				}
 				break;
 		}

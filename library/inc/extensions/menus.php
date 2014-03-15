@@ -116,8 +116,8 @@ if ( !function_exists('reactor_footer_links') ) {
  * @credit wearerequired http://required.ch/
  * @since 1.2.0
  */
-if ( !function_exists('reactor_side_menu') ) {
-	function reactor_side_menu( $nav_args = '' ) {
+if ( !function_exists('reactor_side_nav') ) {
+	function reactor_side_nav( $nav_args = '' ) {
 		global $post;
 
 		// default args

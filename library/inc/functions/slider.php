@@ -77,27 +77,16 @@ if ( !function_exists('reactor_slider') ) {
 
             while ( $slider_query->have_posts() ) : $slider_query->the_post();
 			    $post_id = get_the_ID();
-			    $slide_bg = ( has_post_thumbnail() ) ? get_post_meta( $post_id, '_slide_bg', true ) : null;
-			    $height = ( $slide_bg ) ? ' style="height: 100%;"' : '';
 
-				$output .= '<li' . $height . '>';
+				$output .= '<li>';
 
 				// if slide post has a thumbnail use that as the slide
                 if ( has_post_thumbnail() ) {
                     $img_id = get_post_thumbnail_id( $post_id );
                     $img_url = wp_get_attachment_url( $img_id );
                     $alt = get_post_meta( $img_id, '_wp_attachment_image_alt', true );
-                    $overlay = ( get_the_content() ) ? '<div class="overlay"></div>' : '';
 
-                	if( $slide_bg ) {
-                		$output .= '<div class="slide-content background" style="background-image: url(' . $img_url . '); background-size: cover;">';
-                		$output .= $overlay;
-                		$output .= '<div class="row"><div class="large-12 small-12 large-centered small-centered columns">';
-                		$output .= get_the_content();
-                		$output .= '</div></div></div>';
-                	} else {
-                		$output .= '<img src="' . $img_url . '" alt="' . $alt . '" />';
-                	}
+                	$output .= '<img src="' . $img_url . '" alt="' . $alt . '" />';
 
 				// else use the content of the post for the slide
                 } else {

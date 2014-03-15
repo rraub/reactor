@@ -22,8 +22,8 @@
 
                 </div><!-- .columns -->
 
-                <div id="side-menu" class="<?php reactor_columns('', true, true); ?> pull-9">
-                    <?php reactor_side_menu(); ?>
+                <div id="side-nav" class="<?php reactor_columns( '', array('sidebar' => true) ); ?>">
+                    <?php reactor_side_nav(); ?>
                 </div><!-- #side-menu -->
 
             </div><!-- .row -->

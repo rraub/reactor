@@ -12,8 +12,8 @@
             <div class="entry-body">
 
                 <?php
-            	if ( !is_page_template('page-templates/front-page.php')
-                && !is_page_template('page-templates/news-page.php') ) : ?>
+            	if ( !is_page_template('page-templates/template-front-page.php')
+                && !is_page_template('page-templates/template-news-page.php') ) : ?>
                 <header class="entry-header">
                     <h1 class="entry-title"><?php the_title(); ?></h1>
                 </header><!-- .entry-header -->

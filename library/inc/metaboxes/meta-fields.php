@@ -16,12 +16,12 @@
 	if ( !is_array( $layouts[0] ) ) {
 		$layouts[0] = array();
 	}
-	if ( in_array( '1c', $layouts[0] ) ) {   $theme_layouts['1c']   = __('One Column', 'reactor'); }
-	if ( in_array( '2c-l', $layouts[0] ) ) { $theme_layouts['2c-l'] = __('Two Columns, Left', 'reactor'); }
-	if ( in_array( '2c-r', $layouts[0] ) ) { $theme_layouts['2c-r'] = __('Two Columns, Right', 'reactor'); }
-	if ( in_array( '3c-l', $layouts[0] ) ) { $theme_layouts['3c-l'] = __('Three Columns, Left', 'reactor'); }
-	if ( in_array( '3c-r', $layouts[0] ) ) { $theme_layouts['3c-r'] = __('Three Columns, Right', 'reactor'); }
-	if ( in_array( '3c-c', $layouts[0] ) ) { $theme_layouts['3c-c'] = __('Three Columns, Center', 'reactor'); }
+	if ( in_array( '1c', $layouts[0] ) ) {   $theme_layouts['1c']   = __('1 Column, Full Width', 'reactor'); }
+	if ( in_array( '2c-l', $layouts[0] ) ) { $theme_layouts['2c-l'] = __('2 Columns, Content Left', 'reactor'); }
+	if ( in_array( '2c-r', $layouts[0] ) ) { $theme_layouts['2c-r'] = __('2 Columns, Content Right', 'reactor'); }
+	if ( in_array( '3c-l', $layouts[0] ) ) { $theme_layouts['3c-l'] = __('3 Columns, Content Left', 'reactor'); }
+	if ( in_array( '3c-r', $layouts[0] ) ) { $theme_layouts['3c-r'] = __('3 Columns, Content Right', 'reactor'); }
+	if ( in_array( '3c-c', $layouts[0] ) ) { $theme_layouts['3c-c'] = __('3 Columns, Content Center', 'reactor'); }
 
 /**
  * Variables above this line
@@ -174,13 +174,7 @@
 				'desc'	=> __('A URL for the title to direct to (ex. http://awtheme.com)', 'reactor'),
 				'id'	=> '_slide_url',
 				'type'	=> 'url',
-			),
-			array(
-				'label'	=> 'Background',
-				'desc'	=> 'Use featured image as background',
-				'id'	=> '_slide_bg',
-				'type'	=> 'checkbox',
-			),
+			)
 		);
 
 		$layout_fields = array(
@@ -191,7 +185,7 @@
 				'type'	=> 'radio',
 				'std'   => reactor_option('page_layout', '2c-l'),
 				'options' => $theme_layouts,
-			),
+			)
 		);
 
 

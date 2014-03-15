@@ -72,9 +72,9 @@ function reactor_register_sidebars() {
 	}
 
 	if ( in_array( 'footer', $sidebars[0] ) ) {
+		$columns = reactor_get_widget_columns('sidebar-footer');
 		$footer  = '<div id="%1$s" class="widget top-bar-widget ';
-		$footer .= 'large-' . reactor_get_widget_columns('sidebar-footer');
-		$footer .= ' columns %2$s">';
+		$footer .= 'large-' . $columns . ' medium-' . $columns . ' columns %2$s">';
 		register_sidebar( array(
 			'name'          => __('Footer', 'reactor'),
 			'id'            => 'sidebar-footer',

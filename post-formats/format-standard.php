@@ -6,24 +6,21 @@
  * @subpackage Post-Formats
  * @since 1.0.0
  */
-if ( is_page_template('page-templates/front-page.php') ) {
+if ( is_page_template('page-templates/template-front-page.php') ) {
     $post_meta = reactor_option('frontpage_post_meta', 1);
-}
-elseif ( is_page_template('page-templates/news-page.php') ) {
-    $post_meta = reactor_option('newspage_post_meta', 1);
-} else {
-    $post_meta = reactor_option('post_meta', 1);
-}
-if ( is_page_template('page-templates/front-page.php') ) {
     $comments_link = reactor_option('frontpage_comment_link', 1);
 }
-elseif ( is_page_template('page-templates/news-page.php') ) {
+elseif ( is_page_template('page-templates/template-news-page.php') ) {
+    $post_meta = reactor_option('newspage_post_meta', 1);
     $comments_link = reactor_option('newspage_comment_link', 1);
 } else {
+    $post_meta = reactor_option('post_meta', 1);
     $comments_link = reactor_option('comment_link', 1);
 }
+
 $show_titles = reactor_option('frontpage_show_titles', 1);
 $link_titles = reactor_option('frontpage_link_titles', 0);
+$readmore = reactor_option('post_readmore', __('Read More', 'reactor') . '&raquo;');
 ?>
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -40,13 +37,13 @@ $link_titles = reactor_option('frontpage_link_titles', 0);
                 </div>
                 <?php endif; ?>
 
-                <?php if ( is_page_template('page-templates/front-page.php') && $show_titles ) : ?>
+                <?php if ( is_page_template('page-templates/template-front-page.php') && $show_titles ) : ?>
                     <?php if ( !$link_titles ) : ?>
                     <h2 class="entry-title"><?php the_title(); ?></h2>
                     <?php else : ?>
                     <h2 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __('%s', 'reactor'), the_title_attribute('echo=0') ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
                     <?php endif; ?>
-                <?php elseif ( !get_post_format() && !is_page_template('page-templates/front-page.php') ) :  ?>
+                <?php elseif ( !get_post_format() && !is_page_template('page-templates/template-front-page.php') ) :  ?>
                     <?php if ( is_single() ) : ?>
                     <h1 class="entry-title"><?php the_title(); ?></h1>
                     <?php else : ?>
@@ -56,7 +53,7 @@ $link_titles = reactor_option('frontpage_link_titles', 0);
 
                 <?php if ( has_post_thumbnail() ) : ?>
                     <div class="entry-thumbnail">
-                    <?php if ( is_page_template('page-templates/front-page.php') && !$link_titles ) :
+                    <?php if ( is_page_template('page-templates/template-front-page.php') && !$link_titles ) :
                         the_post_thumbnail();
                     else : ?>
                         <a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_post_thumbnail(); ?></a>
@@ -77,7 +74,11 @@ $link_titles = reactor_option('frontpage_link_titles', 0);
             </div><!-- .entry-content -->
             <?php else : ?>
             <div class="entry-content">
-                <?php the_content(); ?>
+                <?php if( has_excerpt() ) {
+                    the_excerpt();
+                } else {
+                    the_content();
+                } ?>
             </div><!-- .entry-content -->
             <?php endif; ?>
 

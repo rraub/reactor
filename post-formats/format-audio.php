@@ -6,18 +6,18 @@
  * @subpackage Post-Formats
  * @since 1.0.0
  */
-if ( is_page_template('page-templates/front-page.php') ) {
+if ( is_page_template('page-templates/template-front-page.php') ) {
     $post_meta = reactor_option('frontpage_post_meta', 1);
 }
-elseif ( is_page_template('page-templates/news-page.php') ) {
+elseif ( is_page_template('page-templates/template-news-page.php') ) {
     $post_meta = reactor_option('newspage_post_meta', 1);
 } else {
     $post_meta = reactor_option('post_meta', 1);
 }
-if ( is_page_template('page-templates/front-page.php') ) {
+if ( is_page_template('page-templates/template-front-page.php') ) {
     $comments_link = reactor_option('frontpage_comment_link', 1);
 }
-elseif ( is_page_template('page-templates/news-page.php') ) {
+elseif ( is_page_template('page-templates/template-news-page.php') ) {
     $comments_link = reactor_option('newspage_comment_link', 1);
 } else {
     $comments_link = reactor_option('comment_link', 1);

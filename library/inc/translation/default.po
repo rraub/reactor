@@ -579,7 +579,7 @@ msgid "Email Address"
 msgstr ""
 
 #: D:\Documents\GitHub/reactor/library/inc/customizer/customize.php:1115
-#: D:\Documents\GitHub/reactor/page-templates/contact.php:14
+#: D:\Documents\GitHub/reactor/page-templates/template-contact.php:14
 msgid " - Contact Form Message"
 msgstr ""
 
@@ -588,7 +588,7 @@ msgid "Email Subject"
 msgstr ""
 
 #: D:\Documents\GitHub/reactor/library/inc/customizer/customize.php:1128
-#: D:\Documents\GitHub/reactor/page-templates/contact.php:15
+#: D:\Documents\GitHub/reactor/page-templates/template-contact.php:15
 msgid "Thank you! Your email was sent successfully."
 msgstr ""
 

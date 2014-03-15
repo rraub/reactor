@@ -279,7 +279,7 @@ function reactor_wp_title( $title, $sep ) {
 
 	// Add the site description for the home/front page.
 	$site_description = get_bloginfo('description', 'display');
-	if ( $site_description && ( is_home() || is_front_page() || is_page_template('page-templates/front-page.php') ) )
+	if ( $site_description && ( is_home() || is_front_page() || is_page_template('page-templates/template-front-page.php') ) )
 		$title = "$title $sep $site_description";
 
 	// Add a page number if necessary.
@@ -379,13 +379,13 @@ function reactor_add_body_classes( $classes ) {
 	if ( has_nav_menu('top-bar-l') || has_nav_menu('top-bar-r') ) {
 		$classes[] = 'has-top-bar';
 	}
-	if ( is_page_template('page-templates/front-page.php') ) {
+	if ( is_page_template('page-templates/template-front-page.php') ) {
 		$classes[] = 'front-page';
 	}
-	if ( is_page_template('page-templates/news-page.php') ) {
+	if ( is_page_template('page-templates/template-news-page.php') ) {
 		$classes[] = 'news-page';
 	}
-	if ( is_page_template('page-templates/contact.php') ) {
+	if ( is_page_template('page-templates/template-contact.php') ) {
 		$classes[] = 'contact-page';
 	}
 	return $classes;
