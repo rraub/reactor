@@ -42,7 +42,7 @@ class Reactor {
 		// if theme supports extensions
 		require_if_theme_supports('reactor-menus', locate_template('/library/inc/extensions/walkers.php'));
 		require_if_theme_supports('reactor-menus', locate_template('/library/inc/extensions/menus.php'));
-		require_if_theme_supports('reactor-orbit-slider', locate_template('/library/inc/extensions/slides-cpt.php'));
+		require_if_theme_supports('reactor-orbit-slider', locate_template('/library/inc/extensions/cpt-slides.php'));
 		require_if_theme_supports('reactor-sidebars', locate_template('/library/inc/extensions/sidebars.php'));
 		require_if_theme_supports('reactor-translation', locate_template('/library/inc/translation/language.php'));
 	}

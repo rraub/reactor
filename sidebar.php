@@ -15,14 +15,14 @@
     <?php // if layout has one sidebar and the sidebar is active
     if ( is_active_sidebar('sidebar') && '1c' != $layout ) : ?>
 
-        <div id="sidebar" class="sidebar <?php reactor_columns( '', array('sidebar' => true, 'sidebar_id' => 1) ); ?>" role="complementary">
+        <div id="sidebar" class="sidebar <?php reactor_columns( array('sidebar' => true, 'sidebar_id' => 1) ); ?>" role="complementary">
             <?php dynamic_sidebar('sidebar'); ?>
         </div><!-- #sidebar -->
 
     <?php // else show an alert
     else : if ( '1c' != $layout ) : ?>
 
-        <div id="sidebar" class="sidebar <?php reactor_columns( '', array('sidebar' => true, 'sidebar_id' => 1) ); ?>" role="complementary">
+        <div id="sidebar" class="sidebar <?php reactor_columns( array('sidebar' => true, 'sidebar_id' => 1) ); ?>" role="complementary">
             <div class="alert-box secondary"><p>Add some widgets to this area!</p></div>
         </div><!-- #sidebar -->
 
@@ -31,14 +31,14 @@
     <?php // if layout has two sidebars and second sidear is active
     if ( is_active_sidebar('sidebar-2') && ( '3c-l' == $layout || '3c-r' == $layout || '3c-c' == $layout ) ) : ?>
 
-        <div id="sidebar-2" class="sidebar <?php reactor_columns( '', array('sidebar' => true, 'sidebar_id' => 2) ); ?>" role="complementary">
+        <div id="sidebar-2" class="sidebar <?php reactor_columns( array('sidebar' => true, 'sidebar_id' => 2) ); ?>" role="complementary">
             <?php dynamic_sidebar('sidebar-2'); ?>
         </div><!-- #sidebar-2 -->
 
     <?php // else show an alert
     else : if ( '3c-l' == $layout || '3c-r' == $layout || '3c-c' == $layout ) : ?>
 
-        <div id="sidebar-2" class="sidebar <?php reactor_columns( '', array('sidebar' => true, 'sidebar_id' => 2) ); ?>" role="complementary">
+        <div id="sidebar-2" class="sidebar <?php reactor_columns( array('sidebar' => true, 'sidebar_id' => 2) ); ?>" role="complementary">
             <div class="alert-box secondary"><p>Add some widgets to this area!</p></div>
         </div><!-- #sidebar-2 -->
 

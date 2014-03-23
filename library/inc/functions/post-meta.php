@@ -23,6 +23,7 @@ if ( !function_exists('reactor_post_meta') ) {
 		
 		$defaults = array(
 			'include'       => array('author', 'date', 'categories', 'tags'),
+			'exclude'       => array(),
 			'show_icons'    => false,
 			'uncategorized' => false,
 			'echo'          => true,
@@ -57,7 +58,7 @@ if ( !function_exists('reactor_post_meta') ) {
 	
 		// Date
 		$date  = '<a href="' . esc_url( get_month_link( get_the_time('Y'), get_the_time('m') ) ) . '" ';
-		$date .= '"title="' .  esc_attr( __('View all posts from ', 'reactor') . get_the_time('M') . get_the_time('Y') ) . '" rel="bookmark">';
+		$date .= '"title="' .  esc_attr( __('View all posts from ', 'reactor') . get_the_time('M') . ' ' . get_the_time('Y') ) . '" rel="bookmark">';
 		$date .= '<time class="entry-date datetime="' . esc_attr( get_the_date('c') ) . '" pubdate>' . esc_html( get_the_date() ) . '</time></a>';
 	
 		// Author
@@ -66,24 +67,25 @@ if ( !function_exists('reactor_post_meta') ) {
 		$author .= get_the_author() . '</a>';
 
 		$include = (array)$args['include'];
-		if( in_array( 'date', $include ) ) {
-			$meta .= ( $args['show_icons'] ) ? '<i class="fi-calendar" title="Written by"></i> ' : __('Posted', 'reactor');
+		$exclude = (array)$args['exclude'];
+		if( in_array( 'date', $include ) && !in_array( 'date', $exclude ) ) {
+			$meta .= ( $args['show_icons'] ) ? '<i class="fi-calendar"></i> ' : __('Posted', 'reactor');
 			$meta .= ' ' . $date . ' ';
 		}
-		if( in_array( 'author', $include ) ) {
-			$meta .= ( $args['show_icons'] ) ? '<i class="fi-torso" title="Publish on"></i> ' : __('by', 'reactor');
+		if( in_array( 'author', $include ) && !in_array( 'author', $exclude ) ) {
+			$meta .= ( $args['show_icons'] ) ? '<i class="fi-torso"></i> ' : __('by', 'reactor');
 			$meta .= ' ' . $author  . ' ';
 		}
-		if( in_array( 'categories', $include ) ) {
+		if( in_array( 'categories', $include ) && !in_array( 'categories', $exclude ) ) {
 			if( $categories ) {
-				$meta .= ( $args['show_icons'] ) ? '<i class="fi-folder" title="Posted in"></i> ' : __('in', 'reactor');
+				$meta .= ( $args['show_icons'] ) ? '<i class="fi-folder"></i> ' : __('in', 'reactor');
 				$meta .= ' ' . $categories  . ' ';
 			}
 		}
-		if( in_array( 'tags', $include ) ) {
+		if( in_array( 'tags', $include ) && !in_array( 'tags', $exclude ) ) {
 			if( $tags ) {
 				$meta .= '<div class="entry-tags">';
-				$meta .= ( $args['show_icons'] ) ? '<i class="fi-price-tag" title="Tagged with"></i> ' : __('Tags:', 'reactor');
+				$meta .= ( $args['show_icons'] ) ? '<i class="fi-price-tag"></i> ' : __('Tags:', 'reactor');
 				$meta .= ' ' . $tags . '</div>';
 			}
 		}

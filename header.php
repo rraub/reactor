@@ -32,7 +32,7 @@
                 'fixed'     => reactor_option('topbar_fixed', 0),
                 'contained' => reactor_option('topbar_contain', 1),
             );
-            reactor_top_bar( $topbar_args );
+            echo reactor_top_bar( $topbar_args );
         } ?>
 
         <header id="header" class="site-header">

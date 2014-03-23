@@ -79,60 +79,40 @@ class Top_Bar_Walker extends Walker_Nav_Menu {
 }
 
 /**
- * Customize the output of page list for Foundation accordion section
+ * Side Nav Walker
  *
- * @since 1.0.0
+ * @since 2.0.0
  */
-class Side_Menu_Walker extends Walker_Page {
+class Side_Nav_Walker extends Walker_Nav_Menu {
+	function start_el( &$output, $object, $depth = 0, $args = array(), $current_object_id = 0 ) {
+		$item_html = '';
+		parent::start_el( $item_html, $object, $depth, $args );
 
-    function start_lvl( &$output, $depth = 0, $args = array() ) {
-        $indent = str_repeat( "\t", $depth );
-        $output .= '<div class="content" data-section-content><ul class="side-nav">';
-    }
-    function end_lvl( &$output, $depth = 0, $args = array() ) {
-        $indent = str_repeat( "\t", $depth );
-        $output .= '</ul></div></div>';
-    }
+		$classes = empty( $object->classes ) ? array() : ( array ) $object->classes;
 
-    function start_el( &$output, $page, $depth = 0, $args = array(), $current_page = 0 ) {
+		if ( in_array('divider', $classes) ) {
+			$item_html = preg_replace( '/<a[^>]*>(.*)<\/a>/iU', '', $item_html );
+		}
 
-        extract( $args, EXTR_SKIP );
-        $classes = array( 'page_item', 'page-item-' . $page->ID );
+		$output .= $item_html;
+	}
 
-            if ( !empty( $current_page ) ) {
-                $_current_page = get_page( $current_page );
-            }
 
-            if ( isset( $_current_page->ancestors ) && in_array( $page->ID, ( array ) $_current_page->ancestors ) ) {
-                $classes[] = 'current_page_ancestor';
-            }
+	/**
+     * @see Walker::display_element()
+     * @since 1.0.0
+	 *
+	 * @param object $element Data object
+	 * @param array $children_elements List of elements to continue traversing.
+	 * @param int $max_depth Max depth to traverse.
+	 * @param int $depth Depth of current element.
+	 * @param array $args
+	 * @param string $output Passed by reference. Used to append additional content.
+	 * @return null Null on failure with no changes to parameters.
+	 */
+	function display_element( $element, &$children_elements, $max_depth, $depth=0, $args, &$output ) {
+		$element->classes[] = ( $element->current || $element->current_item_ancestor ) ? 'active' : '';
 
-            if ( $page->ID == $current_page ) {
-                $classes[] = 'current_page_item active';
-            } elseif ( $_current_page && $page->ID == $_current_page->post_parent ) {
-                $classes[] = 'current_page_parent';
-            } elseif ( $page->ID == get_option('page_for_posts') ) {
-                $classes[] = 'current_page_parent';
-            }
-
-        // create sections
-        $section_class = ( $depth == 0 && in_array('current_page_ancestor', $classes) ) ? 'section active' : 'section';
-
-        $classes = implode(' ', apply_filters('page_css_class', $classes, $page ) );
-
-        $output .= ( $depth == 0 ) ? '<div class="' . $section_class . '">' : '';
-
-        $output .= ( $depth == 0 ) ? '<p class="' . $classes . ' title" data-section-title>' : '<li class="' . $classes . '">';
-        $output .= '<a href="' . get_page_link( $page->ID ) . '" title="' . esc_attr( wp_strip_all_tags( $page->post_title ) ) . '">';
-        $output .= $args['link_before'] . $page->post_title . $args['link_after'];
-        $output .= '</a>';
-        $output .= ( $depth == 0 && empty( $args['has_children'] ) ) ? '</div>' : '';
-    }
-
-    function end_el( &$output, $object, $depth = 0, $args = array() ) {
-        if ( $depth > 0 ) {
-            $output .= "</li>";
-        }
-    }
-
+		parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
+	}
 }

@@ -21,7 +21,7 @@ function reactor_theme_setup() {
 	 */
 	add_theme_support(
 		'reactor-menus',
-		array('top-bar-l', 'top-bar-r', 'side-menu', 'footer-links')
+		array('top-bar-l', 'top-bar-r', 'side-menu', 'side-nav', 'footer-links')
 	);
 
 	add_theme_support(

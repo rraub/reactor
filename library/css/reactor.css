@@ -1,6 +1,7 @@
 /* WordPress Core ---------------------- */
+/* large: min-width: 64.063em / medium: min-width: 40.063em */
 .alignnone {
-    margin: 0.25rem 1.25rem 1.25rem 0;
+    margin: 0.25rem 0 1.25rem 0;
 }
 .aligncenter,
 div.aligncenter {
@@ -24,7 +25,7 @@ a img.alignright {
     margin: 0.25rem 0 1.25rem 1.25rem;
 }
 a img.alignnone {
-    margin: 0.25rem 1.25rem 1.25rem 0;
+    margin: 0.25rem 0 1.25rem 0;
 }
 a img.alignleft {
     float: left;
@@ -168,7 +169,7 @@ textarea {
 #mobile-menu-button {
     float: left;
 }
-@media only screen and (min-width: 48rem) {
+@media only screen and (min-width: 40.063em) {
     .top-bar-section .search-form {
         padding: 0 10.25rem;
     }
@@ -203,7 +204,7 @@ textarea {
 .content-info p, .footer-links .inline-list {
     margin: 0;
 }
-@media only screen and (min-width: 48rem) {
+@media only screen and (min-width: 40.063em) {
     .content-info {
         text-align: right;
     }
@@ -219,13 +220,14 @@ textarea {
 
 /* Posts & Pages ---------------------- */
 .entry-icon {
-    position: static;
-    font-size: 2.5rem;
+    display: none;
 }
-@media only screen and (min-width: 48rem) {
+@media only screen and (min-width: 40.063em) {
     .entry-icon {
         position: absolute;
         left: -8.33333%;
+        display: block;
+        font-size: 3rem;
     }
 }
 .entry-featured {
@@ -317,7 +319,7 @@ ol.commentlist li {
     margin-bottom: 1.25rem;
     padding: 0.625rem;
     border: 0.063rem solid #e6e6e6;
-    background-color: #f2f2f2;
+    background-color: #f4f4f4;
 }
 .commentlist li.comment .comment-content {
     position: relative;
@@ -336,6 +338,21 @@ ol.commentlist li {
 .comments-area article header cite, .comments-area article header time {
     display: block;
     margin-left: 3.750rem;
+}
+
+/* Side Nav ---------------------- */
+.side-nav-container {
+    background: #f4f4f4;
+}
+.side-nav-container li {
+    margin: 0;
+}
+.side-nav-container li:hover,
+.side-nav-container li.active {
+    background: rgba(0, 64, 84, 0.05);
+}
+.side-nav-container li a {
+    padding: 0.4375rem 1.063rem;
 }
 
 /* Widgets ---------------------- */
@@ -401,7 +418,7 @@ ul.pagination {
 .active #main {
     margin-left: 80%;
 }
-@media only screen and (min-width: 48rem) {
+@media only screen and (min-width: 40.063em) {
     .js #main {
         position: static;
     }

@@ -27,15 +27,15 @@ $readmore = reactor_option('post_readmore', __('Read More', 'reactor') . '&raquo
         <div class="entry-body">
 
             <header class="entry-header">
-                <?php if ( reactor_option('tumblog_icons', false) && ( is_home() || is_archive() ) && current_theme_supports('reactor-tumblog-icons') ) :
-                echo reactor_tumblog_icon();
-                endif; ?>
-
                 <?php if ( is_sticky() ) : ?>
                 <div class="entry-featured">
                     <span class="label secondary"><?php echo apply_filters('reactor_featured_post_title', __('Featured Post', 'reactor')); ?></span>
                 </div>
                 <?php endif; ?>
+                
+                <?php if ( reactor_option('tumblog_icons', false) && ( is_home() || is_archive() ) && current_theme_supports('reactor-tumblog-icons') ) :
+                echo reactor_tumblog_icon();
+                endif; ?>
 
                 <?php if ( is_page_template('page-templates/template-front-page.php') && $show_titles ) : ?>
                     <?php if ( !$link_titles ) : ?>

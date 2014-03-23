@@ -423,7 +423,7 @@ if ( !function_exists('reactor_customize_register') ) {
 				 ) );
 
 			$wp_customize->add_setting('reactor_options[topbar_fixed]', array(
-				'default'        => 0,
+				'default'        => 1,
 				'type'           => 'option',
 				'capability'     => 'manage_options',
 				'transport'      => 'postMessage',
@@ -437,7 +437,7 @@ if ( !function_exists('reactor_customize_register') ) {
 				 ) );
 
 			$wp_customize->add_setting('reactor_options[topbar_contain]', array(
-				'default'        => 1,
+				'default'        => 0,
 				'type'           => 'option',
 				'capability'     => 'manage_options',
 				'transport'      => 'postMessage',
